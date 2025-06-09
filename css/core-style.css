@@ -8,13 +8,13 @@
 @import url(../css/nice-select.css);
 @import url(../css/font-awesome.min.css);
 @font-face {
-  font-family: 'helveticaneuebold';
-  src: url("../fonts/helvetica_neu_bold-webfont.woff2") format("woff2"), url("../fonts/helvetica_neu_bold-webfont.woff") format("woff");
+  font-family: 'poppins';
+  src: url("../fonts/poppins-v5-latin-300.woff2") format("woff2"), url("../fonts/poppins-v5-latin-300.woff") format("woff");
   font-weight: normal;
   font-style: normal; }
 @font-face {
-  font-family: 'helveticaneuemedium';
-  src: url("../fonts/helveticaneue_medium-webfont.woff2") format("woff2"), url("../fonts/helveticaneue_medium-webfont.woff") format("woff");
+  font-family: 'poppins';
+  src: url("../fonts/poppins-v5-latin-300.woff2") format("woff2"), url("../fonts/poppins-v5-latin-300.woff") format("woff");
   font-weight: normal;
   font-style: normal; }
 /* :: 2.0 Import All CSS */
@@ -24,18 +24,23 @@
   padding: 0; }
 
 body {
-  font-family: "helveticaneuemedium";
+  font-family: "poppins";
   font-size: 16px; }
 
 h1,
 h2,
 h3,
-h4,
 h5,
 h6 {
   color: #242424;
   line-height: 1.3;
   font-weight: 400; }
+
+h4 {
+  color: #242424;
+  line-height: 1.3;
+  font-weight: 600;
+}
 
 p {
   color: #6d6d6d;
@@ -450,7 +455,7 @@ img {
       margin-bottom: 100px;
       display: block; }
     .main-content-wrapper .header-area .amado-nav li a {
-      font-size: 14px;
+      font-size: 16px;
       text-transform: uppercase;
       position: relative;
       z-index: 1;
@@ -486,6 +491,21 @@ img {
     .main-content-wrapper .header-area .amado-btn-group .amado-btn {
       width: 160px;
       display: block; }
+
+    .main-content-wrapper .header-area .login-register a {
+      display: block;
+      text-transform: uppercase;
+      font-size: 16px;
+      padding: 15px 0;
+      color: #131212;
+      line-height: 1; }
+
+      .main-content-wrapper .header-area .login-register a img {
+        margin-right: 10px; }
+
+      .main-content-wrapper .header-area .login-register a:hover, .main-content-wrapper .header-area .login-register :focus {
+        color: #fbb710; }
+    
     .main-content-wrapper .header-area .cart-fav-search a {
       display: block;
       text-transform: uppercase;
@@ -499,7 +519,7 @@ img {
         color: #9e9e9e; }
       .main-content-wrapper .header-area .cart-fav-search a img {
         margin-right: 10px; }
-      .main-content-wrapper .header-area .cart-fav-search a:hover, .main-content-wrapper .header-area .cart-fav-search a:focus {
+      .main-content-wrapper .header-area .cart-fav-search a:hover, .main-content-wrapper .header-area .cart-fav-search :focus {
         color: #fbb710; }
     .main-content-wrapper .header-area .social-info a {
       color: #b5b5b5;
