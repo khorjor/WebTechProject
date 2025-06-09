@@ -162,6 +162,25 @@ button {
 	}
 }
 
+.search-close {
+        @include trans-duration(500ms);
+        width: 40px;
+        height: 40px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        background-color: red;
+        text-align: center;
+        color: #fff;
+        line-height: 40px;
+        font-size: 12px;
+        cursor: pointer;
+        background-color: $bg-default;
+        &:hover {
+            background-color: $dark-color;
+        }
+    }
+
 .link-to-login {
 	padding-top: 30px;
 	display: flex;
