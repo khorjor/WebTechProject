@@ -244,8 +244,8 @@
                 <!-- Newsletter Form -->
                 <div class="col-12 col-lg-6 col-xl-5">
                     <div class="newsletter-form mb-100">
-                        <form action="#" method="post">
-                            <input type="email" name="email" class="nl-email" placeholder="Your E-mail">
+                        <form id="subscribe-form" method="post">
+                            <input type="email" id="subscribe-email" name="email" class="nl-email" placeholder="Your E-mail">
                             <input type="submit" value="Subscribe">
                         </form>
                     </div>
@@ -317,6 +317,38 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="js/plugins.js"></script>
     <!-- Active js -->
     <script src="js/active.js"></script>
+
+    <script>
+        async function subscribeSubmit(e) {
+            e.preventDefault();
+            console.log('Hi')
+            const email = { email: document.getElementById('subscribe-email').value };
+            console.log(email);
+            const response = await fetch('http://localhost:4000/api/subscribe', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(email)
+            });
+
+            console.log(response);
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const loggedInUser = localStorage.getItem("loggedInUser");
+            const loginSection = document.querySelector(".login-register");
+
+            if (loggedInUser && loginSection) {
+                loginSection.innerHTML = `
+            <span style="color: #131212;">
+                <img src="img/core-img/login.png" alt="" style="width:24px; height:24px; vertical-align:middle; margin-right: 10px;">
+                <span style="color: #fbb710;"> Welcome, </span>${loggedInUser}
+            </span>`;
+            }
+        });
+
+
+
+    </script>
 
 </body>
 

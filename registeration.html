@@ -20,32 +20,34 @@
 				<div class="image-holder">
 					<img src="img/bg-img/registration-form-1.png" alt="">
 				</div>
-				<form action="">
+
+				<form id="registration-form"  onsubmit="submitRegistration(event)">
 					
 					<div class="logo">
                         <a href="index.html"><img src="img/core-img/logo.png" alt=""></a>
                     </div>
 
 					<h3>Registration</h3>
+
 					<div class="form-group">
-						<input type="text" placeholder="First Name" class="form-control">
-						<input type="text" placeholder="Last Name" class="form-control">
+						<input type="text" id="First-name" placeholder="First Name" class="form-control">
+						<input type="text" id="Last-name" placeholder="Last Name" class="form-control">
 					</div>
 					<div class="form-wrapper">
-						<input type="text" placeholder="Username" class="form-control">
+						<input type="text" id="Username" placeholder="Username" class="form-control">
 						<i class="zmdi zmdi-account"></i>
 					</div>
 					<div class="form-wrapper">
-						<input type="text" placeholder="Email Address" class="form-control">
+						<input type="text" id="Email" placeholder="Email Address" class="form-control">
 						<i class="zmdi zmdi-email"></i>
 					</div>
 					
 					<div class="form-wrapper">
-						<input type="password" placeholder="Password" class="form-control">
+						<input type="password" id="Password" placeholder="Password" class="form-control">
 						<i class="zmdi zmdi-lock"></i>
 					</div>
 					
-					<button>Register
+					<button type="submit">Register
 						<i class="zmdi zmdi-arrow-right"></i>
 					</button>
 					
@@ -56,6 +58,43 @@
 				</form>
 			</div>
 		</div>
-		
+
+		<script>
+			async function submitRegistration(event) {
+				event.preventDefault(); 
+
+				const fname = document.getElementById("First-name").value.trim();
+				const lname = document.getElementById("Last-name").value.trim();
+				const username = document.getElementById("Username").value.trim();
+				const email = document.getElementById("Email").value.trim();
+				const password = document.getElementById("Password").value.trim();
+
+				if (!fname || !lname || !username || !email || !password ) {
+					alert("Please fill in all fields.");
+					return;
+				}
+
+				try {
+					const response = await fetch("http://localhost:5000/api/register", {
+						method: "POST",
+						headers: { "Content-Type": "application/json" },
+						body: JSON.stringify({
+							firstName: fname,
+							lastName: lname,
+							email,
+							username,
+							password
+						}),
+					});
+
+					const result = await response.text();
+					alert(result);
+				} catch (error) {
+					console.error("Registration error:", error);
+					alert("Registration failed.");
+				}
+			}
+			
+		</script>
 	</body>
 </html>

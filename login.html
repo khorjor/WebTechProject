@@ -1,60 +1,86 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title>Login</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		
-		<!-- MATERIAL DESIGN ICONIC FONT -->
-		<link rel="stylesheet" href="fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">
 
-		<!-- STYLE CSS -->
-		<link rel="stylesheet" href="css/login/style.css">
-        
+<head>
+	<meta charset="utf-8">
+	<title>Login</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	</head>
+	<!-- MATERIAL DESIGN ICONIC FONT -->
+	<link rel="stylesheet" href="fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">
 
-	<body>
+	<!-- STYLE CSS -->
+	<link rel="stylesheet" href="css/login/style.css">
 
-        <div class="search-close">
-            <i class="fa fa-close" aria-hidden="true"></i>
-        </div>
 
-		<div class="wrapper" style="background-color: #F7F5F3">
-			<div class="inner">
-				<div class="image-holder">
-					<img src="img/bg-img/registration-form-1.png" alt="">
-				</div>
-				<form action="">
+</head>
 
-                    <div class="logo-login">
-                        <a href="index.html"><img src="img/core-img/logo.png" alt=""></a>
-                    </div>
+<body>
 
-					<h3>Sign in</h3>
-					
-					<div class="form-wrapper">
-						<input type="text" placeholder="Username / Email" class="form-control">
-						<i class="zmdi zmdi-account"></i>
-					</div>
-				
-					
-					<div class="form-wrapper">
-						<input type="password" placeholder="Password" class="form-control">
-						<i class="zmdi zmdi-lock"></i>
-					</div>
-					
-					<button>Sign In
-						<i class="zmdi zmdi-arrow-right"></i>
-					</button>
-					
-					<div class="link-to-signup">
-					<p>Don't have an account? <a href="registeration.html">Sign up</a></p>
-					</div>
+	<div class="search-close">
+		<i class="fa fa-close" aria-hidden="true"></i>
+	</div>
 
-				</form>
+	<div class="wrapper" style="background-color: #F7F5F3">
+		<div class="inner">
+			<div class="image-holder">
+				<img src="img/bg-img/registration-form-1.png" alt="">
 			</div>
+
+			<form id="loginForm">
+
+				<div class="logo-login">
+					<a href="index.html"><img src="img/core-img/logo.png" alt=""></a>
+				</div>
+
+				<h3>Sign in</h3>
+
+				<div class="form-wrapper">
+					<input type="text" id="identifier" placeholder="Username / Email" class="form-control">
+					<i class="zmdi zmdi-account"></i>
+				</div>
+
+
+				<div class="form-wrapper">
+					<input type="password" id="password" placeholder="Password" class="form-control">
+					<i class="zmdi zmdi-lock"></i>
+				</div>
+
+				<button type="submit">Sign In
+					<i class="zmdi zmdi-arrow-right"></i>
+				</button>
+
+				<div class="link-to-signup">
+					<p>Don't have an account? <a href="registeration.html">Sign up</a></p>
+				</div>
+
+			</form>
 		</div>
-		
-	</body>
+	</div>
+
+	<script>
+		document.getElementById("loginForm").addEventListener("submit", async function (e) {
+			e.preventDefault();
+
+			const identifier = document.getElementById("identifier").value;
+			const password = document.getElementById("password").value;
+
+			const response = await fetch("http://localhost:5000/api/login", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({ identifier, password })
+			});
+
+
+			const result = await response.json();
+			alert(result.message);
+
+			if (response.ok) {
+				localStorage.setItem("loggedInUser", result.username); // store actual username
+				window.location.href = "index.html";
+			}
+		});
+	</script>
+</body>
+
 </html>
