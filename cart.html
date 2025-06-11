@@ -297,6 +297,21 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <!-- Active js -->
     <script src="js/active.js"></script>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const loggedInUser = localStorage.getItem("loggedInUser");
+            const loginSection = document.querySelector(".login-register");
+
+            if (loggedInUser && loginSection) {
+                loginSection.innerHTML = `
+            <span style="color: #131212;">
+                <img src="img/core-img/login.png" alt="" style="width:24px; height:24px; vertical-align:middle; margin-right: 10px;">
+                <span>${loggedInUser}</span>
+            </span>`;
+            }
+        });
+    </script>
+
 </body>
 
 </html>
