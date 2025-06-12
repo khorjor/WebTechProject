@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "image": "img/product-img/chair/chair1.jpg",
+    "name": "Casa Chair",
+    "price": 180,
+    "hoverImage": "img/product-img/chair/hover-chair1.jpg",
+    "rating": 5,
+    "brand": "furniture",
+    "detailLink": "product-details.html"
+  },
+  {
+    "id": 2,
+    "image": "img/product-img/chair/chair2.jpg",
+    "name": "Mid-Century Wooden Armchair Chair",
+    "price": 220,
+    "hoverImage": "img/product-img/chair/hover-chair2.jpg",
+    "rating": 4,
+    "brand": "furniture",
+    "detailLink": "product-details.html"
+  },
+  {
+    "id": 3,
+    "image": "img/product-img/chair/chair3.jpg",
+    "name": "Japan Accent Chair",
+    "price": 150,
+    "hoverImage": "img/product-img/chair/hover-chair3.jpg", 
+    "rating": 4.5,
+    "brand": "ikea",
+    "detailLink": "product-details.html"
+  },
+  {
+    "id": 4,
+    "image": "img/product-img/chair/chair4.jpg",
+    "name": "Rocking Chair",
+    "price": 300,
+    "hoverImage": "img/product-img/chair/hover-chair4.jpg",
+    "rating": 5,
+    "brand": "furniture",
+    "detailLink": "product-details.html"
+  },
+  {
+    "id": 5,
+  "image": "img/product-img/chair/chair5.jpg",
+  "name": "Acacia Wood Patio Chair",
+  "price": 250,
+  "hoverImage": "img/product-img/chair/hover-chair5.jpg",
+  "rating": 4.8,
+  "brand": "ikea",
+  "detailLink": "product-details.html"
+}
+]

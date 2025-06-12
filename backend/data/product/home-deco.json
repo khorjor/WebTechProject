@@ -1,0 +1,51 @@
+[
+  {
+    "id": 1,
+    "image": "img/product-img/home-deco/home-deco1.jpg",
+    "name": "Wall Art Set",
+    "price": 120,
+    "hoverImage": "img/product-img/home-deco/hover-home-deco1.jpg",
+    "rating": 5,
+    "brand": "ikea",
+    "detailLink": "product-details.html"
+  },
+  {"id": 2,
+    "image": "img/product-img/home-deco/home-deco2.jpg",
+    "name": "Ceramic Vase",
+    "price": 80,
+    "hoverImage": "img/product-img/home-deco/hover-home-deco2.jpg",
+    "rating": 4,
+    "brand": "furniture",
+    "detailLink": "product-details.html"
+  },
+  {
+    "id": 3,
+    "image": "img/product-img/home-deco/home-deco3.jpg",
+    "name": "Wall Clock",
+    "price": 90,
+    "hoverImage": "img/product-img/home-deco/hover-home-deco3.jpg",
+    "rating": 4.5,
+    "brand": "ikea",
+    "detailLink": "product-details.html"
+  },
+  {
+    "id": 4,
+    "image": "img/product-img/home-deco/home-deco4.jpg",
+    "name": "Decorative Mirror",
+    "price": 150,
+    "hoverImage": "img/product-img/home-deco/hover-home-deco4.jpg",
+    "rating": 5,
+    "brand": "artdeco",
+    "detailLink": "product-details.html"
+  },
+  {
+    "id": 5,
+    "image": "img/product-img/home-deco/home-deco5.jpg",
+    "name": "Table Lamp",
+    "price": 60,
+    "hoverImage": "img/product-img/home-deco/hover-home-deco5.jpg",
+    "rating": 4.8,
+    "brand": "factory",
+    "detailLink": "product-details.html"
+  }
+]

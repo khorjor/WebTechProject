@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "image": "img/product-img/bed/bed1.jpg",
+    "name": " Modern Queen Bed ",
+    "price": 750,
+    "hoverImage": "img/product-img/bed/hover-bed1.jpg",
+    "rating": 5,
+    "brand": "furniture",
+    "detailLink": "product-details.html"
+  },
+  {
+    "id": 2,
+    "image": "img/product-img/bed/bed2.jpg",
+    "name": "Day Bed",
+    "price": 620,
+    "hoverImage": "img/product-img/bed/hover-bed2.jpg",
+    "rating": 4,
+    "brand": "furniture",
+    "detailLink": "product-details.html"
+  },
+  {
+    "id": 3,
+    "image": "img/product-img/bed/bed3.jpg",
+    "name": "Mid-Century Modern Bed",
+    "price": 450,
+    "hoverImage": "img/product-img/bed/hover-bed3.jpg",
+    "rating": 4.5,
+    "brand": "furniture",
+    "detailLink": "product-details.html"
+  },
+  {
+    "id": 4,
+    "image": "img/product-img/bed/bed4.jpg",
+    "name": "Saba Wabi bed",
+    "price": 900,
+    "hoverImage": "img/product-img/bed/hover-bed4.jpg",
+    "rating": 5,
+    "brand": "factory",
+    "detailLink": "product-details.html"
+  },
+  {
+    "id": 5,
+    "image": "img/product-img/bed/bed5.jpg",
+    "name": "Vintage Iron Bed",
+    "price": 550,
+    "hoverImage": "img/product-img/bed/hover-bed5.jpg",
+    "rating": 4.8,
+    "brand": "artdeco",
+    "detailLink": "product-details.html"
+  }
+]
