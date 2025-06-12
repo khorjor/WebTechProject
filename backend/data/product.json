@@ -1,0 +1,26 @@
+[
+  {
+    "id": "001",
+    "name": "Modern Chair",
+    "price": 180,
+    "image": "img/product-img/product1.jpg",
+    "hoverImage": "img/product-img/product2.jpg",
+    "rating": 5
+  },
+  {
+    "id": "002",
+    "name": "Minimal Plant Pot",
+    "price": 10,
+    "image": "img/product-img/product3.jpg",
+    "hoverImage": "img/product-img/product4.jpg",
+    "rating": 4
+  },
+  {
+    "id": "003",
+    "name": "Wooden Table",
+    "price": 220,
+    "image": "img/product-img/product5.jpg",
+    "hoverImage": "img/product-img/product6.jpg",
+    "rating": 5
+  }
+]

@@ -121,8 +121,8 @@
                                         <th>Quantity</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
+                                <tbody id="cart-body">
+                                    <!-- <tr>
                                         <td class="cart_product_img">
                                             <a href="#"><img src="img/bg-img/cart1.jpg" alt="Product"></a>
                                         </td>
@@ -184,7 +184,7 @@
                                                 </div>
                                             </div>
                                         </td>
-                                    </tr>
+                                    </tr> -->
                                 </tbody>
                             </table>
                         </div>
@@ -193,10 +193,11 @@
                         <div class="cart-summary">
                             <h5>Cart Total</h5>
                             <ul class="summary-table">
-                                <li><span>subtotal:</span> <span>$140.00</span></li>
+                                <li><span>subtotal:</span> <span id="subtotal">$0.00</span></li>
                                 <li><span>delivery:</span> <span>Free</span></li>
-                                <li><span>total:</span> <span>$140.00</span></li>
+                                <li><span>total:</span> <span id="total">$0.00</span></li>
                             </ul>
+
                             <div class="cart-btn mt-100">
                                 <a href="cart.html" class="btn amado-btn w-100">Checkout</a>
                             </div>
@@ -296,6 +297,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="js/plugins.js"></script>
     <!-- Active js -->
     <script src="js/active.js"></script>
+    <script src="backend/routes/cart.js"></script>
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
@@ -304,13 +306,123 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
             if (loggedInUser && loginSection) {
                 loginSection.innerHTML = `
-            <span style="color: #131212;">
-                <img src="img/core-img/login.png" alt="" style="width:24px; height:24px; vertical-align:middle; margin-right: 10px;">
-                <span>${loggedInUser}</span>
-            </span>`;
+                <span style="color: #131212;">
+                    <img src="img/core-img/login.png" alt="" style="width:24px; height:24px; vertical-align:middle; margin-right: 10px;">
+                    <span>${loggedInUser}</span>
+                </span>`;
             }
         });
     </script>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const user = sessionStorage.getItem("loggedInUser");
+            if (!user) {
+                alert("You must log in to view your cart.");
+                window.location.href = "login.html";
+                return;
+            }
+
+            const cartKey = `cart-${user}`;
+            let cart = JSON.parse(sessionStorage.getItem(cartKey)) || [];
+
+            const cartBody = document.getElementById("cart-body");
+            const subtotalElem = document.getElementById("subtotal");
+            const totalElem = document.getElementById("total");
+
+            function renderCart() {
+                cartBody.innerHTML = "";
+                let subtotal = 0;
+
+                cart.forEach((item, index) => {
+                    subtotal += item.price * item.quantity;
+
+                    const row = document.createElement("tr");
+                    row.innerHTML = `
+                    <td class="cart_product_img"><img src="${item.img}" style="width:100px;" alt=""></td>
+                    <td class="cart_product_desc"><h5>${item.name}</h5></td>
+                    <td class="price"><span>$${item.price}</span></td>
+                    <td class="qty">
+                        <div class="qty-btn d-flex">
+                            <p>Qty</p>
+                            <div class="quantity">
+                                <span class="qty-minus" onclick="changeQty(${index}, -1)"><i class="fa fa-minus"></i></span>
+                                <input type="number" class="qty-text" id="qty-${index}" value="${item.quantity}" readonly>
+                                <span class="qty-plus" onclick="changeQty(${index}, 1)"><i class="fa fa-plus" ></i></span>
+                            </div>
+                            
+                            <button onclick="removeItem(${index})" class="btn btn-sm btn-danger" style="margin-left: 30px;">Remove</button>
+                            
+                        </div>
+                        
+                    </td>
+                    
+                `;
+                    cartBody.appendChild(row);
+                });
+
+                subtotalElem.textContent = `$${subtotal.toFixed(2)}`;
+                totalElem.textContent = `$${subtotal.toFixed(2)}`;
+
+                // Update cart count in navbar
+                const cartCount = document.querySelector('.cart-nav span');
+                if (cartCount) {
+                    const totalItems = cart.reduce((sum, p) => sum + p.quantity, 0);
+                    cartCount.textContent = `(${totalItems})`;
+                }
+            }
+
+            window.changeQty = function (index, delta) {
+                cart[index].quantity += delta;
+                if (cart[index].quantity < 1) cart[index].quantity = 1;
+
+                sessionStorage.setItem(cartKey, JSON.stringify(cart));
+                renderCart();
+            };
+
+            renderCart();
+
+            //remove
+            window.removeItem = function (index) {
+                const user = sessionStorage.getItem("loggedInUser");
+                const cartKey = `cart-${user}`;
+                let cart = JSON.parse(sessionStorage.getItem(cartKey)) || [];
+
+                const removedItem = cart[index]; // save this for backend
+
+                // 1. Remove item from sessionStorage
+                cart.splice(index, 1);
+                sessionStorage.setItem(cartKey, JSON.stringify(cart));
+
+                // 2. update cart.json
+                fetch('http://localhost:5000/api/cart', {
+                    method: 'DELETE',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        username: user,
+                        productId: removedItem.id
+                    })
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (!data.success) {
+                            console.error("Backend remove failed:", data.message);
+                        }
+                    })
+                    .catch(err => {
+                        console.error("Error syncing delete with backend:", err);
+                    });
+
+                location.reload();
+            };
+
+
+
+        });
+
+        
+    </script>
+
 
 </body>
 

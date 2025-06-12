@@ -76,7 +76,7 @@
 			alert(result.message);
 
 			if (response.ok) {
-				localStorage.setItem("loggedInUser", result.username); // store actual username
+				sessionStorage.setItem("loggedInUser", result.username);
 				window.location.href = "index.html";
 			}
 		});

@@ -334,7 +334,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         }
 
         document.addEventListener("DOMContentLoaded", function () {
-            const loggedInUser = localStorage.getItem("loggedInUser");
+            const loggedInUser = sessionStorage.getItem("loggedInUser");
             const loginSection = document.querySelector(".login-register");
 
             if (loggedInUser && loginSection) {
