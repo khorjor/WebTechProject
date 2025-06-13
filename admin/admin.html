@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - Product Management</title>
+  <link rel="stylesheet" href="css/core-style.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f7f7f7;
+      padding: 2rem;
+    }
+    .admin-nav {
+      margin-bottom: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .admin-nav button {
+      background-color: #ffbb00;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .admin-container {
+      background: #fff;
+      border-radius: 10px;
+      padding: 2rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+    th, td {
+      padding: 0.8rem;
+      border-bottom: 1px solid #ddd;
+      text-align: left;
+    }
+    th {
+      background-color: #f0f0f0;
+    }
+    .form-popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      padding: 2rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      border-radius: 10px;
+      z-index: 999;
+      width: 500px;
+    }
+    .form-popup input, .form-popup textarea, .form-popup select {
+      width: 100%;
+      margin: 0.5rem 0;
+      padding: 0.6rem;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-family: 'Poppins', sans-serif;
+    }
+    .form-popup button {
+      margin-top: 1rem;
+      margin-right: 0.5rem;
+      background-color: #ffbb00;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .action-btn {
+      background-color: #e74c3c;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 0.4rem 0.8rem;
+      cursor: pointer;
+      margin-left: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+    
+  <div class="admin-nav">
+    <a href="../index.html" class="btn">Back to Home</a>
+    <h2>Product Management</h2>
+    <button onclick="openForm()">+ Add Product</button>
+  </div>
+
+  <div class="admin-container">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Category</th>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Brand</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="productTableBody">
+        <!-- Placeholder content -->
+      </tbody>
+    </table>
+  </div>
+
+  <div class="form-popup" id="productForm">
+    <h3>Add/Edit Product</h3>
+    <select id="categorySelect" name="Category">
+    <option value="" disabled selected>Category</option>
+      <option value="Chairs">Chairs</option>
+      <option value="Tables">Tables</option>
+      <option value="Beds">Beds</option>
+      <option value="Homedeco">Homedeco</option>
+    </select>
+    <input type="text" placeholder="Product Name">
+    <input type="number" placeholder="Price">
+    <select id="brandSelect">
+    <option value="" disabled selected>Brands</option>
+      <option value="Ikea">Ikea</option>
+      <option value="Furniture Inc">Furniture Inc</option>
+      <option value="The factory">The factory</option>
+      <option value="Artdeco">Artdeco</option>
+    </select>
+    <input type="url" placeholder="Image URL">
+    <input type="url" placeholder="Hover Image URL">
+    <input type="number" placeholder="Rating (0-5)">
+    <textarea placeholder="Short Description"></textarea>
+    <input type="text" placeholder="Detail Page Link">
+    <button onclick="saveProduct()">Save</button>
+    <button onclick="closeForm()" style="background-color:#ddd;color:#000;">Cancel</button>
+  </div>
+
+  <script>
+    const dummyProducts = [
+      { id: 1, category: 'Beds', name: 'Modern Queen Bed', price: 750, brand: 'furniture' },
+      { id: 2, category: 'Beds', name: 'Day Bed', price: 620, brand: 'furniture' }
+    ];
+
+    function renderTable() {
+      const tbody = document.getElementById('productTableBody');
+      tbody.innerHTML = '';
+      dummyProducts.forEach((product, index) => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${product.id}</td>
+          <td>${product.category}</td>
+          <td>${product.name}</td>
+          <td>$${product.price}</td>
+          <td>${product.brand}</td>
+          <td>
+            <button class="action-btn" onclick="removeProduct(${index})">Remove</button>
+          </td>
+        `;
+        tbody.appendChild(row);
+      });
+    }
+
+    function openForm() {
+      document.getElementById("productForm").style.display = "block";
+    }
+
+    function closeForm() {
+      document.getElementById("productForm").style.display = "none";
+    }
+
+    function saveProduct() {
+      // For frontend mockup only — does not persist
+      closeForm();
+    }
+
+    function removeProduct(index) {
+      dummyProducts.splice(index, 1);
+      renderTable();
+    }
+
+    renderTable();
+  </script>
+</body>
+</html>

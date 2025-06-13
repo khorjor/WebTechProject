@@ -1,0 +1,57 @@
+[
+  {
+    "id": 1,
+    "image": "img/product-img/table/table1.jpg",
+    "name": "Dining Table",
+    "price": 500,
+    "hoverImage": "img/product-img/table/hover-table1.jpg",
+    "rating": 5,
+    "brand": "furniture",
+    "description": "Gather around in style with this modern Dining Table, designed for both intimate dinners and family feasts. Made from durable wood and finished with a smooth top, its clean lines and sturdy legs offer timeless elegance. Perfect for creating a warm and welcoming dining space.",
+    "detailLink": "product-details.html"
+  },
+  {
+    "id": 2,
+    "image": "img/product-img/table/table2.jpg",
+    "name": "Coffee Table",
+    "price": 250,
+    "hoverImage": "img/product-img/table/hover-table2.jpg",
+    "rating": 4,
+    "brand": "furniture",
+    "description": "Enhance your living room with this chic Coffee Table, a blend of function and form. Its spacious surface is perfect for decor, drinks, or everyday items, while its compact design ensures it fits seamlessly into any layout.",
+    "detailLink": "product-details.html"
+  },
+  {
+    "id": 3,
+    "image": "img/product-img/table/table3.jpg",
+    "name": "Study Desk",
+    "price": 300,
+    "hoverImage": "img/product-img/table/hover-table3.jpg",
+    "rating": 4.5,
+    "brand": "ikea",
+    "description": "Stay productive and organized with this modern Study Desk. Featuring ample workspace, a clean design, and built-in storage, it's the perfect choice for home offices, students, or creatives who value efficiency and aesthetics.",
+    "detailLink": "product-details.html"
+  },
+  {
+    "id": 4,
+    "image": "img/product-img/table/table4.jpg",
+    "name": "Console Table",
+    "price": 400,
+    "hoverImage": "img/product-img/table/hover-table4.jpg",
+    "rating": 5,
+    "brand": "furniture",
+    "description": "Add depth and dimension to your hallway or living area with this elegant Console Table. Slim yet sturdy, it's ideal for showcasing decorative pieces or providing extra storage without taking up too much space.",
+    "detailLink": "product-details.html"
+  },
+  {
+    "id": 5,
+    "image": "img/product-img/table/table5.jpg",
+    "name": "Bedside Table",
+    "price": 150,
+    "hoverImage": "img/product-img/table/hover-table5.jpg",
+    "rating": 4.8,
+    "brand": "furniture",
+    "description": "Designed for convenience and style, this Bedside Table offers a compact yet functional storage solution for your bedroom. Crafted with a smooth finish and a modern silhouette, it features a spacious drawer and an open shelf to keep your nighttime essentials organized and within easy reach. Ideal for minimalist interiors or cozy spaces looking for a touch of elegance.",
+    "detailLink": "product-details.html"
+  }
+]

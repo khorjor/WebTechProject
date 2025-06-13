@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1,
+    "image": "img/product-img/home-deco/home-deco1.jpg",
+    "name": "Wall Art Set",
+    "price": 120,
+    "hoverImage": "img/product-img/home-deco/hover-home-deco1.jpg",
+    "rating": 5,
+    "brand": "ikea",
+    "description": "Transform any room with this curated Wall Art Set, featuring a harmonious blend of abstract and modern designs. Each piece is printed on premium-quality canvas to ensure lasting beauty and visual impact, making your wall a true focal point.",
+    "detailLink": "product-details.html"
+  },
+  {"id": 2,
+    "image": "img/product-img/home-deco/home-deco2.jpg",
+    "name": "Ceramic Vase",
+    "price": 80,
+    "hoverImage": "img/product-img/home-deco/hover-home-deco2.jpg",
+    "rating": 4,
+    "brand": "furniture",
+    "description": "Crafted with a refined matte glaze and organic curves, this Ceramic Vase brings an artisanal touch to your interior. Whether holding fresh blooms or standing alone, it adds subtle sophistication and charm to any setting.",
+    "detailLink": "product-details.html"
+  },
+  {
+    "id": 3,
+    "image": "img/product-img/home-deco/home-deco3.jpg",
+    "name": "Wall Clock",
+    "price": 90,
+    "hoverImage": "img/product-img/home-deco/hover-home-deco3.jpg",
+    "rating": 4.5,
+    "brand": "ikea",
+    "description": "Function meets finesse with this stylish Wall Clock. Its minimalist face and sleek design make it both a practical timekeeper and an understated wall accent suitable for kitchens, offices, or living spaces.",
+    "detailLink": "product-details.html"
+  },
+  {
+    "id": 4,
+    "image": "img/product-img/home-deco/home-deco4.jpg",
+    "name": "Decorative Mirror",
+    "price": 150,
+    "hoverImage": "img/product-img/home-deco/hover-home-deco4.jpg",
+    "rating": 5,
+    "brand": "artdeco",
+    "description": "Brighten your space with this stunning Decorative Mirror, featuring a modern frame that reflects both light and style. Perfect for entryways or bedrooms, it opens up small areas and adds an elegant visual statement.",
+    "detailLink": "product-details.html"
+  },
+  {
+    "id": 5,
+    "image": "img/product-img/home-deco/home-deco5.jpg",
+    "name": "Table Lamp",
+    "price": 60,
+    "hoverImage": "img/product-img/home-deco/hover-home-deco5.jpg",
+    "rating": 4.8,
+    "brand": "factory",
+    "description": "Bring a warm, ambient glow to your room with this contemporary Table Lamp. Its compact form and soft light create a cozy atmosphere, making it ideal for desks, bedside tables, or reading corners.",
+    "detailLink": "product-details.html"
+  }
+]

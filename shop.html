@@ -112,14 +112,11 @@
 
                 <!--  Catagories  -->
                 <div class="catagories-menu">
-                    <ul>
-                        <li class="active"><a href="#">Chairs</a></li>
-                        <li><a href="#">Beds</a></li>
-                        <li><a href="#">Accesories</a></li>
-                        <li><a href="#">Furniture</a></li>
-                        <li><a href="#">Home Deco</a></li>
-                        <li><a href="#">Dressings</a></li>
-                        <li><a href="#">Tables</a></li>
+                    <ul id="category-list">
+                        <li class="active"><a href="#" data-json="backend/data/product/chairs.json">Chairs</a></li>
+                        <li><a href="#" data-json="backend/data/product/tables.json">Tables</a></li>
+                        <li><a href="#" data-json="backend/data/product/beds.json">Beds</a></li>
+                        <li><a href="#" data-json="backend/data/product/home-deco.json">Home Deco</a></li>
                     </ul>
                 </div>
             </div>
@@ -130,29 +127,20 @@
                 <h6 class="widget-title mb-30">Brands</h6>
 
                 <div class="widget-desc">
-                    <!-- Single Form Check -->
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="amado">
-                        <label class="form-check-label" for="amado">Amado</label>
-                    </div>
-                    <!-- Single Form Check -->
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="ikea">
+                        <input class="form-check-input" type="checkbox" id="ikea">
                         <label class="form-check-label" for="ikea">Ikea</label>
                     </div>
-                    <!-- Single Form Check -->
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="furniture">
+                        <input class="form-check-input" type="checkbox" id="furniture">
                         <label class="form-check-label" for="furniture">Furniture Inc</label>
                     </div>
-                    <!-- Single Form Check -->
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="factory">
+                        <input class="form-check-input" type="checkbox" id="factory">
                         <label class="form-check-label" for="factory">The factory</label>
                     </div>
-                    <!-- Single Form Check -->
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="artdeco">
+                        <input class="form-check-input" type="checkbox" id="artdeco">
                         <label class="form-check-label" for="artdeco">Artdeco</label>
                     </div>
                 </div>
@@ -237,230 +225,7 @@
                     </div>
                 </div>
 
-                <div class="row">
-
-                    <!-- Single Product Area -->
-                    <div class="col-12 col-sm-6 col-md-12 col-xl-6">
-                        <div class="single-product-wrapper">
-                            <!-- Product Image -->
-                            <div class="product-img">
-                                <img src="img/product-img/product1.jpg" alt="">
-                                <!-- Hover Thumb -->
-                                <img class="hover-img" src="img/product-img/product2.jpg" alt="">
-                            </div>
-
-                            <!-- Product Description -->
-                            <div class="product-description d-flex align-items-center justify-content-between">
-                                <!-- Product Meta Data -->
-                                <div class="product-meta-data">
-                                    <div class="line"></div>
-                                    <p class="product-price">$180</p>
-                                    <a href="product-details.html">
-                                        <h6>Modern Chair</h6>
-                                    </a>
-                                </div>
-                                <!-- Ratings & Cart -->
-                                <div class="ratings-cart text-right">
-                                    <div class="ratings">
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="cart">
-                                        <a href="cart.html" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="img/core-img/cart.png" alt=""></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Single Product Area -->
-                    <div class="col-12 col-sm-6 col-md-12 col-xl-6">
-                        <div class="single-product-wrapper">
-                            <!-- Product Image -->
-                            <div class="product-img">
-                                <img src="img/product-img/product2.jpg" alt="">
-                                <!-- Hover Thumb -->
-                                <img class="hover-img" src="img/product-img/product3.jpg" alt="">
-                            </div>
-
-                            <!-- Product Description -->
-                            <div class="product-description d-flex align-items-center justify-content-between">
-                                <!-- Product Meta Data -->
-                                <div class="product-meta-data">
-                                    <div class="line"></div>
-                                    <p class="product-price">$180</p>
-                                    <a href="product-details.html">
-                                        <h6>Modern Chair</h6>
-                                    </a>
-                                </div>
-                                <!-- Ratings & Cart -->
-                                <div class="ratings-cart text-right">
-                                    <div class="ratings">
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="cart">
-                                        <a href="cart.html" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="img/core-img/cart.png" alt=""></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Single Product Area -->
-                    <div class="col-12 col-sm-6 col-md-12 col-xl-6">
-                        <div class="single-product-wrapper">
-                            <!-- Product Image -->
-                            <div class="product-img">
-                                <img src="img/product-img/product3.jpg" alt="">
-                                <!-- Hover Thumb -->
-                                <img class="hover-img" src="img/product-img/product4.jpg" alt="">
-                            </div>
-
-                            <!-- Product Description -->
-                            <div class="product-description d-flex align-items-center justify-content-between">
-                                <!-- Product Meta Data -->
-                                <div class="product-meta-data">
-                                    <div class="line"></div>
-                                    <p class="product-price">$180</p>
-                                    <a href="product-details.html">
-                                        <h6>Modern Chair</h6>
-                                    </a>
-                                </div>
-                                <!-- Ratings & Cart -->
-                                <div class="ratings-cart text-right">
-                                    <div class="ratings">
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="cart">
-                                        <a href="cart.html" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="img/core-img/cart.png" alt=""></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Single Product Area -->
-                    <div class="col-12 col-sm-6 col-md-12 col-xl-6">
-                        <div class="single-product-wrapper">
-                            <!-- Product Image -->
-                            <div class="product-img">
-                                <img src="img/product-img/product4.jpg" alt="">
-                                <!-- Hover Thumb -->
-                                <img class="hover-img" src="img/product-img/product5.jpg" alt="">
-                            </div>
-
-                            <!-- Product Description -->
-                            <div class="product-description d-flex align-items-center justify-content-between">
-                                <!-- Product Meta Data -->
-                                <div class="product-meta-data">
-                                    <div class="line"></div>
-                                    <p class="product-price">$180</p>
-                                    <a href="product-details.html">
-                                        <h6>Modern Chair</h6>
-                                    </a>
-                                </div>
-                                <!-- Ratings & Cart -->
-                                <div class="ratings-cart text-right">
-                                    <div class="ratings">
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="cart">
-                                        <a href="cart.html" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="img/core-img/cart.png" alt=""></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Single Product Area -->
-                    <div class="col-12 col-sm-6 col-md-12 col-xl-6">
-                        <div class="single-product-wrapper">
-                            <!-- Product Image -->
-                            <div class="product-img">
-                                <img src="img/product-img/product5.jpg" alt="">
-                                <!-- Hover Thumb -->
-                                <img class="hover-img" src="img/product-img/product6.jpg" alt="">
-                            </div>
-
-                            <!-- Product Description -->
-                            <div class="product-description d-flex align-items-center justify-content-between">
-                                <!-- Product Meta Data -->
-                                <div class="product-meta-data">
-                                    <div class="line"></div>
-                                    <p class="product-price">$180</p>
-                                    <a href="product-details.html">
-                                        <h6>Modern Chair</h6>
-                                    </a>
-                                </div>
-                                <!-- Ratings & Cart -->
-                                <div class="ratings-cart text-right">
-                                    <div class="ratings">
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="cart">
-                                        <a href="cart.html" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="img/core-img/cart.png" alt=""></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Single Product Area -->
-                    <div class="col-12 col-sm-6 col-md-12 col-xl-6">
-                        <div class="single-product-wrapper">
-                            <!-- Product Image -->
-                            <div class="product-img">
-                                <img src="img/product-img/product6.jpg" alt="">
-                                <!-- Hover Thumb -->
-                                <img class="hover-img" src="img/product-img/product1.jpg" alt="">
-                            </div>
-
-                            <!-- Product Description -->
-                            <div class="product-description d-flex align-items-center justify-content-between">
-                                <!-- Product Meta Data -->
-                                <div class="product-meta-data">
-                                    <div class="line"></div>
-                                    <p class="product-price">$180</p>
-                                    <a href="product-details.html">
-                                        <h6>Modern Chair</h6>
-                                    </a>
-                                </div>
-                                <!-- Ratings & Cart -->
-                                <div class="ratings-cart text-right">
-                                    <div class="ratings">
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="cart">
-                                        <a href="cart.html" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="img/core-img/cart.png" alt=""></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <div class="row" id="product-list">
 
                 <div class="row">
                     <div class="col-12">
@@ -546,6 +311,9 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                                         <li class="nav-item">
                                             <a class="nav-link" href="checkout.html">Checkout</a>
                                         </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="admin/admin.html">Admin</a>
+                                        </li>
                                     </ul>
                                 </div>
                             </nav>
@@ -567,6 +335,197 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="js/plugins.js"></script>
     <!-- Active js -->
     <script src="js/active.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const loggedInUser = sessionStorage.getItem("loggedInUser");
+            const loginSection = document.querySelector(".login-register");
+
+            if (loggedInUser && loginSection) {
+                loginSection.innerHTML = `
+            <span style="color: #131212;">
+                <img src="img/core-img/login.png" alt="" style="width:24px; height:24px; vertical-align:middle; margin-right: 10px;">
+                <span>${loggedInUser}</span>
+            </span>`;
+            }
+        });
+    </script>
+    
+    <script>
+        let currentJsonFile = "backend/data/product/chairs.json"; // default file
+
+        function generateStars(rating) {
+            const fullStars = Math.floor(rating);
+            const halfStar = rating % 1 >= 0.5;
+            let stars = "";
+            for (let i = 0; i < fullStars; i++) stars += '<i class="fa fa-star"></i>';
+            if (halfStar) stars += '<i class="fa fa-star-half-o"></i>';
+            return stars;
+        }
+
+
+        function getSelectedBrands() {
+            return Array.from(document.querySelectorAll(".form-check-input:checked"))
+                .map(cb => cb.id.toLowerCase());
+        }
+
+        async function loadProducts(jsonFile) {
+            try {
+                const res = await fetch(jsonFile);
+                if (!res.ok) throw new Error("Cannot load products");
+                let products = await res.json();
+
+                const selectedBrands = getSelectedBrands();
+                if (selectedBrands.length > 0) {
+                    products = products.filter(p =>
+                        selectedBrands.includes(p.brand?.toLowerCase())
+                    );
+                }
+
+                const container = document.getElementById("product-list");
+                container.innerHTML = products.map(product => `
+                        <div class="col-12 col-sm-6 col-md-12 col-xl-6">
+                            <div class="single-product-wrapper">
+                                <div class="product-img">
+                                    
+                                    <a href="product-details.html?id=${product.id}&category=${currentJsonFile.split('/').pop().replace('.json', '')}">
+                                        <img src="${product.image}" alt="${product.name}">
+                                        <img class="hover-img" src="${product.hoverImage}" alt="">
+                                    </a>
+                                </div>
+
+                                <div class="product-description d-flex align-items-center justify-content-between">
+                                    <div class="product-meta-data">
+                                        <div class="line"></div>
+                                        <p class="product-price">$${product.price}</p>
+                                        <h6>${product.name}</h6>
+                                    </div>
+                                    <div class="ratings-cart text-right">
+                                        <div class="ratings">
+                                            ${generateStars(product.rating)}
+                                        </div>
+                                        <div class="cart">
+                                            <a href="#" class="add-to-cart-btn"
+                                               data-id="${product.id}"
+                                               data-name="${product.name}"
+                                               data-price="${product.price}"
+                                               data-img="${product.image}">
+                                               <img src="img/core-img/cart.png" alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `).join("");
+
+                setupAddToCartButtons(); // rebind events
+            } catch (err) {
+                console.error("Error loading product list:", err);
+                document.getElementById("product-list").innerHTML = "<p class='text-danger'>Failed to load products</p>";
+            }
+        }
+
+        function setupAddToCartButtons() {
+            document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+                button.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    const user = sessionStorage.getItem("loggedInUser");
+                    if (!user) {
+                        alert("Please log in before adding to cart.");
+                        window.location.href = "login.html";
+                        return;
+                    }
+
+                    const cartKey = `cart-${user}`;
+                    const product = {
+                        id: this.dataset.id,
+                        name: this.dataset.name,
+                        price: parseFloat(this.dataset.price),
+                        img: this.dataset.img,
+                        quantity: 1
+                    };
+
+                    let cart = JSON.parse(sessionStorage.getItem(cartKey)) || [];
+                    const index = cart.findIndex(p => p.id === product.id);
+
+                    if (index >= 0) {
+                        cart[index].quantity += 1;
+                    } else {
+                        cart.push(product);
+                    }
+
+                    sessionStorage.setItem(cartKey, JSON.stringify(cart));
+                    alert("Product added to cart!");
+
+                    updateCartCount();
+
+                    // Backend sync
+                    fetch('http://localhost:5000/api/cart', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            username: user,
+                            productId: product.id,
+                            productName: product.name,
+                            productPrice: product.price,
+                            productImage: product.img,
+                            quantity: qty
+                        })
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            if (!data.success) {
+                                console.error("Backend error:", data.message);
+                            }
+                        })
+                        .catch(err => {
+                            console.error("Failed to sync with backend:", err);
+                        });
+                });
+            });
+        }
+
+
+        function updateCartCount() {
+            const user = sessionStorage.getItem("loggedInUser");
+            if (!user) return;
+
+            const cart = JSON.parse(sessionStorage.getItem(`cart-${user}`)) || [];
+            const totalItems = cart.reduce((sum, p) => sum + p.quantity, 0);
+            const cartCount = document.querySelector('.cart-nav span');
+            if (cartCount) cartCount.textContent = `(${totalItems})`;
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            // Initial product load
+            loadProducts(currentJsonFile);
+            updateCartCount();
+
+            // Category switch (left menu)
+            document.querySelectorAll("#category-list a").forEach(link => {
+                link.addEventListener("click", function (e) {
+                    e.preventDefault();
+                    const jsonFile = this.getAttribute("data-json");
+                    currentJsonFile = jsonFile;
+                    loadProducts(jsonFile);
+
+                    // Update active state
+                    document.querySelectorAll("#category-list li").forEach(li => li.classList.remove("active"));
+                    this.parentElement.classList.add("active");
+                });
+            });
+
+            // Brand filter checkbox
+            document.querySelectorAll(".form-check-input").forEach(cb => {
+                cb.addEventListener("change", function () {
+                    loadProducts(currentJsonFile);
+                });
+            });
+        });
+    </script>
+    
 
 </body>
 

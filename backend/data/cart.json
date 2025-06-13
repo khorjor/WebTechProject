@@ -1,0 +1,12 @@
+{
+  "charlixcx": [
+    {
+      "productId": 1,
+      "productName": "Casa Chair",
+      "productPrice": 180,
+      "productImage": "img/product-img/chair/chair1.jpg",
+      "quantity": 4,
+      "addedAt": "2025-06-13T09:50:45.519Z"
+    }
+  ]
+}

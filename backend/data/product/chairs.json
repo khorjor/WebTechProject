@@ -1,0 +1,57 @@
+[
+  {
+    "id": 1,
+    "image": "img/product-img/chair/chair1.jpg",
+    "name": "Casa Chair",
+    "price": 180,
+    "hoverImage": "img/product-img/chair/hover-chair1.jpg",
+    "rating": 5,
+    "brand": "furniture",
+    "description":"Clean lines and plush comfort make the Casa Chair a versatile seating solution for any room. Whether used as a dining chair or accent piece, it offers a supportive build with contemporary charm.",
+    "detailLink": "product-details.html"
+  },
+  {
+    "id": 2,
+    "image": "img/product-img/chair/chair2.jpg",
+    "name": "Mid-Century Wooden Armchair Chair",
+    "price": 220,
+    "hoverImage": "img/product-img/chair/hover-chair2.jpg",
+    "rating": 4,
+    "brand": "furniture", 
+    "description":"With its sculpted frame and upholstered seat, this chair pays homage to mid-century design. The smooth wooden arms and angled legs offer style and ergonomic support for reading, relaxing, or entertaining.",
+    "detailLink": "product-details.html"
+  },
+  {
+    "id": 3,
+    "image": "img/product-img/chair/chair3.jpg",
+    "name": "Japan Accent Chair",
+    "price": 150,
+    "hoverImage": "img/product-img/chair/hover-chair3.jpg", 
+    "rating": 4.5,
+    "brand": "ikea",
+    "description":"Minimalist and serene, the Japan Accent Chair brings a Zen-like balance to your interior. Its low-profile frame, soft seat cushion, and natural finish make it a statement piece with comfort at heart.",
+    "detailLink": "product-details.html"
+  },
+  {
+    "id": 4,
+    "image": "img/product-img/chair/chair4.jpg",
+    "name": "Rocking Chair",
+    "price": 300,
+    "hoverImage": "img/product-img/chair/hover-chair4.jpg",
+    "rating": 5,
+    "brand": "furniture",
+    "description":"Embrace tradition with a modern twist in this Rocking Chair. Its gentle rocking motion soothes while the cushioned seat and solid frame ensure durability and long-lasting comfort.",
+    "detailLink": "product-details.html"
+  },
+  {
+    "id": 5,
+  "image": "img/product-img/chair/chair5.jpg",
+  "name": "Acacia Wood Patio Chair",
+  "price": 250,
+  "hoverImage": "img/product-img/chair/hover-chair5.jpg",
+  "rating": 4.8,
+  "brand": "ikea",
+  "description":"Built to withstand the elements, this Acacia Wood Patio Chair blends rustic appeal with contemporary comfort. Ideal for balconies, gardens, or sunrooms, it’s a beautiful addition to any outdoor living space.",
+  "detailLink": "product-details.html"
+}
+]
