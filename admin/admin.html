@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Admin - Product Management</title>
-  <link rel="stylesheet" href="css/core-style.css">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/core-style.css" />
+  <link rel="stylesheet" href="style.css" />
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
@@ -33,6 +33,23 @@
       border-radius: 10px;
       padding: 2rem;
       box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    #filterButtons button {
+      margin: 0 0.4rem;
+      padding: 0.4rem 1rem;
+      border-radius: 6px;
+      border: none;
+      background-color: #ddd;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.2s;
+    }
+    #filterButtons button:hover {
+      background-color: #bbb;
+    }
+    #filterButtons .active-filter {
+      background-color: #ffbb00;
+      color: black;
     }
     table {
       width: 100%;
@@ -90,7 +107,7 @@
   </style>
 </head>
 <body>
-    
+
   <div class="admin-nav">
     <a href="../index.html" class="btn">Back to Home</a>
     <h2>Product Management</h2>
@@ -98,6 +115,16 @@
   </div>
 
   <div class="admin-container">
+    <div style="display: flex; justify-content: center; margin-bottom: 1rem;">
+      <div id="filterButtons">
+        <button onclick="filterByCategory('All')">All</button>
+        <button onclick="filterByCategory('Chairs')">Chairs</button>
+        <button onclick="filterByCategory('Tables')">Tables</button>
+        <button onclick="filterByCategory('Beds')">Beds</button>
+        <button onclick="filterByCategory('Homedeco')">Homedeco</button>
+      </div>
+    </div>
+
     <table>
       <thead>
         <tr>
@@ -109,49 +136,88 @@
           <th>Actions</th>
         </tr>
       </thead>
-      <tbody id="productTableBody">
-        <!-- Placeholder content -->
-      </tbody>
+      <tbody id="productTableBody"></tbody>
     </table>
   </div>
 
   <div class="form-popup" id="productForm">
     <h3>Add/Edit Product</h3>
-    <select id="categorySelect" name="Category">
-    <option value="" disabled selected>Category</option>
+    <select id="categorySelect" required>
+      <option value="" disabled selected>Category</option>
       <option value="Chairs">Chairs</option>
       <option value="Tables">Tables</option>
       <option value="Beds">Beds</option>
       <option value="Homedeco">Homedeco</option>
     </select>
-    <input type="text" placeholder="Product Name">
-    <input type="number" placeholder="Price">
-    <select id="brandSelect">
-    <option value="" disabled selected>Brands</option>
-      <option value="Ikea">Ikea</option>
-      <option value="Furniture Inc">Furniture Inc</option>
-      <option value="The factory">The factory</option>
-      <option value="Artdeco">Artdeco</option>
+    <input type="text" placeholder="Product Name" id="productName" required>
+    <input type="number" placeholder="Price" id="productPrice" required>
+    <select id="brandSelect" required>
+      <option value="" disabled selected>Brands</option>
+      <option value="ikea">Ikea</option>
+      <option value="furniture">Furniture Inc</option>
+      <option value="factory">The factory</option>
+      <option value="artdeco">Artdeco</option>
     </select>
-    <input type="url" placeholder="Image URL">
-    <input type="url" placeholder="Hover Image URL">
-    <input type="number" placeholder="Rating (0-5)">
-    <textarea placeholder="Short Description"></textarea>
-    <input type="text" placeholder="Detail Page Link">
+    <input type="url" placeholder="Image URL" id="productImage">
+    <input type="url" placeholder="Hover Image URL" id="hoverImage">
+    <input type="number" placeholder="Rating (0-5)" id="rating">
+    <textarea placeholder="Short Description" id="description"></textarea>
+    <input type="text" placeholder="Detail Page Link" id="detailLink">
     <button onclick="saveProduct()">Save</button>
     <button onclick="closeForm()" style="background-color:#ddd;color:#000;">Cancel</button>
   </div>
 
   <script>
-    const dummyProducts = [
-      { id: 1, category: 'Beds', name: 'Modern Queen Bed', price: 750, brand: 'furniture' },
-      { id: 2, category: 'Beds', name: 'Day Bed', price: 620, brand: 'furniture' }
+    const API_BASE = 'http://localhost:5000/api/products';
+    const productSources = [
+      { display: 'Chairs', file: 'chairs' },
+      { display: 'Tables', file: 'tables' },
+      { display: 'Beds', file: 'beds' },
+      { display: 'Homedeco', file: 'home-deco' }
     ];
+
+    let allProducts = [];
+    let editIndex = null;
+    let filteredCategory = 'All';
+
+    function filterByCategory(category) {
+      filteredCategory = category;
+      renderTable();
+
+      const buttons = document.querySelectorAll('#filterButtons button');
+      buttons.forEach(btn => btn.classList.remove('active-filter'));
+      const activeBtn = Array.from(buttons).find(btn => btn.textContent === category);
+      if (activeBtn) activeBtn.classList.add('active-filter');
+    }
+
+    async function fetchAllProducts() {
+      const results = await Promise.all(productSources.map(async (item) => {
+        try {
+          const res = await fetch(`${API_BASE}/${item.file}`);
+          const data = await res.json();
+          if (!Array.isArray(data)) return [];
+          return data.map(p => ({ ...p, category: item.display }));
+        } catch {
+          return [];
+        }
+      }));
+      allProducts = results.flat();
+      renderTable();
+    }
+
+    function getFileFromCategory(displayCategory) {
+      const match = productSources.find(p => p.display === displayCategory);
+      return match ? match.file : displayCategory.toLowerCase();
+    }
 
     function renderTable() {
       const tbody = document.getElementById('productTableBody');
       tbody.innerHTML = '';
-      dummyProducts.forEach((product, index) => {
+      const productsToShow = filteredCategory === 'All'
+        ? allProducts
+        : allProducts.filter(p => p.category === filteredCategory);
+
+      productsToShow.forEach((product, index) => {
         const row = document.createElement('tr');
         row.innerHTML = `
           <td>${product.id}</td>
@@ -160,11 +226,77 @@
           <td>$${product.price}</td>
           <td>${product.brand}</td>
           <td>
-            <button class="action-btn" onclick="removeProduct(${index})">Remove</button>
+            <button class="action-btn" onclick="editProduct(${allProducts.indexOf(product)})" style="background-color:#3498db">Edit</button>
+            <button class="action-btn" onclick="removeProduct(${allProducts.indexOf(product)})">Remove</button>
           </td>
         `;
         tbody.appendChild(row);
       });
+    }
+
+    function editProduct(index) {
+      const product = allProducts[index];
+      editIndex = index;
+      document.getElementById('categorySelect').value = product.category;
+      document.getElementById('productName').value = product.name;
+      document.getElementById('productPrice').value = product.price;
+      document.getElementById('brandSelect').value = product.brand;
+      document.getElementById('productImage').value = product.image;
+      document.getElementById('hoverImage').value = product.hoverImage;
+      document.getElementById('rating').value = product.rating;
+      document.getElementById('description').value = product.description;
+      document.getElementById('detailLink').value = product.detailLink;
+      openForm();
+    }
+
+    async function saveProduct() {
+      const displayCategory = document.getElementById('categorySelect').value;
+      const fileName = getFileFromCategory(displayCategory);
+      const productData = {
+        name: document.getElementById('productName').value,
+        price: parseFloat(document.getElementById('productPrice').value),
+        brand: document.getElementById('brandSelect').value,
+        image: document.getElementById('productImage').value,
+        hoverImage: document.getElementById('hoverImage').value,
+        rating: parseFloat(document.getElementById('rating').value),
+        description: document.getElementById('description').value,
+        detailLink: document.getElementById('detailLink').value
+      };
+      let res;
+      if (editIndex !== null) {
+        const product = allProducts[editIndex];
+        res = await fetch(`${API_BASE}/${fileName}/${product.id}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(productData)
+        });
+      } else {
+        res = await fetch(`${API_BASE}/${fileName}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(productData)
+        });
+      }
+      if (res.ok) {
+        closeForm();
+        fetchAllProducts();
+        editIndex = null;
+      } else {
+        alert('Error saving product');
+      }
+    }
+
+    async function removeProduct(index) {
+      const product = allProducts[index];
+      const fileName = getFileFromCategory(product.category);
+      const res = await fetch(`${API_BASE}/${fileName}/${product.id}`, {
+        method: 'DELETE'
+      });
+      if (res.ok) {
+        fetchAllProducts();
+      } else {
+        alert('Failed to delete product.');
+      }
     }
 
     function openForm() {
@@ -173,19 +305,22 @@
 
     function closeForm() {
       document.getElementById("productForm").style.display = "none";
+      editIndex = null;
+      document.getElementById('categorySelect').value = "";
+      document.getElementById('productName').value = "";
+      document.getElementById('productPrice').value = "";
+      document.getElementById('brandSelect').value = "";
+      document.getElementById('productImage').value = "";
+      document.getElementById('hoverImage').value = "";
+      document.getElementById('rating').value = "";
+      document.getElementById('description').value = "";
+      document.getElementById('detailLink').value = "";
     }
 
-    function saveProduct() {
-      // For frontend mockup only — does not persist
-      closeForm();
-    }
-
-    function removeProduct(index) {
-      dummyProducts.splice(index, 1);
-      renderTable();
-    }
-
-    renderTable();
+    document.addEventListener("DOMContentLoaded", () => {
+      filterByCategory('All');
+      fetchAllProducts();
+    });
   </script>
 </body>
 </html>

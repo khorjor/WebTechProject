@@ -7,7 +7,7 @@
     "hoverImage": "img/product-img/bed/hover-bed1.jpg",
     "rating": 5,
     "brand": "furniture",
-    "description":"Elevate your bedroom with the Modern Queen Bed, a masterpiece of clean lines and minimalist aesthetics. Crafted with durable wood and upholstered in high-quality fabric, it offers both comfort and style. Its neutral tones blend effortlessly into any décor, making it the perfect centerpiece for a restful retreat.",
+    "description": "Elevate your bedroom with the Modern Queen Bed, a masterpiece of clean lines and minimalist aesthetics. Crafted with durable wood and upholstered in high-quality fabric, it offers both comfort and style. Its neutral tones blend effortlessly into any décor, making it the perfect centerpiece for a restful retreat.",
     "detailLink": "product-details.html"
   },
   {
@@ -18,7 +18,7 @@
     "hoverImage": "img/product-img/bed/hover-bed2.jpg",
     "rating": 4,
     "brand": "furniture",
-    "description":"The Day Bed combines functionality with a contemporary design, ideal for lounging during the day and providing comfortable sleep at night. Its space-saving build and refined silhouette make it perfect for small apartments or guest rooms.",
+    "description": "The Day Bed combines functionality with a contemporary design, ideal for lounging during the day and providing comfortable sleep at night. Its space-saving build and refined silhouette make it perfect for small apartments or guest rooms.",
     "detailLink": "product-details.html"
   },
   {
@@ -29,7 +29,7 @@
     "hoverImage": "img/product-img/bed/hover-bed3.jpg",
     "rating": 4.5,
     "brand": "furniture",
-    "description":"Infuse your space with the charm of retro design through the Mid-Century Modern Bed. Featuring angled legs and a streamlined frame, this bed offers a perfect mix of vintage character and modern reliability.",
+    "description": "Infuse your space with the charm of retro design through the Mid-Century Modern Bed. Featuring angled legs and a streamlined frame, this bed offers a perfect mix of vintage character and modern reliability.",
     "detailLink": "product-details.html"
   },
   {
@@ -40,18 +40,18 @@
     "hoverImage": "img/product-img/bed/hover-bed4.jpg",
     "rating": 5,
     "brand": "factory",
-    "description":"Inspired by the Japanese philosophy of wabi-sabi, the Saba Wabi Bed embraces simplicity and natural beauty. Its low-profile frame and earthy textures create a tranquil ambiance, turning any bedroom into a serene sanctuary.",
+    "description": "Inspired by the Japanese philosophy of wabi-sabi, the Saba Wabi Bed embraces simplicity and natural beauty. Its low-profile frame and earthy textures create a tranquil ambiance, turning any bedroom into a serene sanctuary.",
     "detailLink": "product-details.html"
   },
   {
     "id": 5,
     "image": "img/product-img/bed/bed5.jpg",
     "name": "Vintage Iron Bed",
-    "price": 550,
+    "price": 520,
     "hoverImage": "img/product-img/bed/hover-bed5.jpg",
-    "rating": 4.8,
+    "rating": 4,
     "brand": "artdeco",
-    "description":"Add a touch of nostalgia to your home with the Vintage Iron Bed. Featuring ornate ironwork and a classic silhouette, this bed combines antique elegance with robust construction for lasting appeal.",
+    "description": "Add a touch of nostalgia to your home with the Vintage Iron Bed. Featuring ornate ironwork and a classic silhouette, this bed combines antique elegance with robust construction for lasting appeal.",
     "detailLink": "product-details.html"
   }
 ]

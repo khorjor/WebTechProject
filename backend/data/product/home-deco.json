@@ -10,7 +10,8 @@
     "description": "Transform any room with this curated Wall Art Set, featuring a harmonious blend of abstract and modern designs. Each piece is printed on premium-quality canvas to ensure lasting beauty and visual impact, making your wall a true focal point.",
     "detailLink": "product-details.html"
   },
-  {"id": 2,
+  {
+    "id": 2,
     "image": "img/product-img/home-deco/home-deco2.jpg",
     "name": "Ceramic Vase",
     "price": 80,
@@ -48,7 +49,7 @@
     "name": "Table Lamp",
     "price": 60,
     "hoverImage": "img/product-img/home-deco/hover-home-deco5.jpg",
-    "rating": 4.8,
+    "rating": 4,
     "brand": "factory",
     "description": "Bring a warm, ambient glow to your room with this contemporary Table Lamp. Its compact form and soft light create a cozy atmosphere, making it ideal for desks, bedside tables, or reading corners.",
     "detailLink": "product-details.html"
