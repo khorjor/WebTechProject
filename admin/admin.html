@@ -8,7 +8,6 @@
   <link rel="stylesheet" href="style.css" />
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
-
     body {
       font-family: 'Poppins', sans-serif;
       background-color: #f7f7f7;
@@ -76,6 +75,8 @@
       border-radius: 10px;
       z-index: 999;
       width: 500px;
+      max-height: 90vh;        
+      overflow-y: auto;
     }
     .form-popup input, .form-popup textarea, .form-popup select {
       width: 100%;
@@ -104,6 +105,19 @@
       cursor: pointer;
       margin-left: 0.5rem;
     }
+    .img-preview {
+      width: 100%;
+      max-height: 200px;
+      object-fit: contain;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+    }
+    .product-image {
+      width: 450px;
+      height: 600px;
+      object-fit: cover;
+}
+
   </style>
 </head>
 <body>
@@ -158,8 +172,13 @@
       <option value="factory">The factory</option>
       <option value="artdeco">Artdeco</option>
     </select>
-    <input type="url" placeholder="Image URL" id="productImage">
-    <input type="url" placeholder="Hover Image URL" id="hoverImage">
+    
+    <input type="url" placeholder="Image URL" id="productImage" oninput="previewImage('productImage', 'previewMain')">
+    <img id="previewMain" class="img-preview" src="" alt="Main Image Preview">
+    
+    <input type="url" placeholder="Hover Image URL" id="hoverImage" oninput="previewImage('hoverImage', 'previewHover')">
+    <img id="previewHover" class="img-preview" src="" alt="Hover Image Preview">
+    
     <input type="number" placeholder="Rating (0-5)" id="rating">
     <textarea placeholder="Short Description" id="description"></textarea>
     <input type="text" placeholder="Detail Page Link" id="detailLink">
@@ -182,6 +201,9 @@
 
     function filterByCategory(category) {
       filteredCategory = category;
+      localStorage.setItem("adminFilter", filteredCategory); 
+
+      console.log("Filtering to:", filteredCategory);
       renderTable();
 
       const buttons = document.querySelectorAll('#filterButtons button');
@@ -191,19 +213,18 @@
     }
 
     async function fetchAllProducts() {
-      const results = await Promise.all(productSources.map(async (item) => {
-        try {
-          const res = await fetch(`${API_BASE}/${item.file}`);
-          const data = await res.json();
-          if (!Array.isArray(data)) return [];
-          return data.map(p => ({ ...p, category: item.display }));
-        } catch {
-          return [];
-        }
-      }));
-      allProducts = results.flat();
-      renderTable();
-    }
+    const results = await Promise.all(productSources.map(async (item) => {
+      try {
+        const res = await fetch(`${API_BASE}/${item.file}`);
+        const data = await res.json();
+        if (!Array.isArray(data)) return [];
+        return data.map(p => ({ ...p, category: item.display }));
+      } catch {
+        return [];
+      }
+    }));
+    allProducts = results.flat();
+}
 
     function getFileFromCategory(displayCategory) {
       const match = productSources.find(p => p.display === displayCategory);
@@ -211,8 +232,10 @@
     }
 
     function renderTable() {
+        console.log("Rendering category:", filteredCategory); // debug
       const tbody = document.getElementById('productTableBody');
       tbody.innerHTML = '';
+
       const productsToShow = filteredCategory === 'All'
         ? allProducts
         : allProducts.filter(p => p.category === filteredCategory);
@@ -220,7 +243,7 @@
       productsToShow.forEach((product, index) => {
         const row = document.createElement('tr');
         row.innerHTML = `
-          <td>${product.id}</td>
+          <td>${index + 1}</td>
           <td>${product.category}</td>
           <td>${product.name}</td>
           <td>$${product.price}</td>
@@ -238,6 +261,7 @@
       const product = allProducts[index];
       editIndex = index;
       document.getElementById('categorySelect').value = product.category;
+      document.getElementById('categorySelect').disabled = true;
       document.getElementById('productName').value = product.name;
       document.getElementById('productPrice').value = product.price;
       document.getElementById('brandSelect').value = product.brand;
@@ -246,22 +270,26 @@
       document.getElementById('rating').value = product.rating;
       document.getElementById('description').value = product.description;
       document.getElementById('detailLink').value = product.detailLink;
+      previewImage('productImage', 'previewMain');
+      previewImage('hoverImage', 'previewHover');
       openForm();
     }
 
     async function saveProduct() {
       const displayCategory = document.getElementById('categorySelect').value;
       const fileName = getFileFromCategory(displayCategory);
+      
       const productData = {
-        name: document.getElementById('productName').value,
-        price: parseFloat(document.getElementById('productPrice').value),
-        brand: document.getElementById('brandSelect').value,
-        image: document.getElementById('productImage').value,
-        hoverImage: document.getElementById('hoverImage').value,
-        rating: parseFloat(document.getElementById('rating').value),
-        description: document.getElementById('description').value,
-        detailLink: document.getElementById('detailLink').value
-      };
+      name: document.getElementById('productName').value,
+      price: parseFloat(document.getElementById('productPrice').value),
+      brand: document.getElementById('brandSelect').value,
+      image: document.getElementById('productImage').value,
+      hoverImage: document.getElementById('hoverImage').value,
+      rating: parseFloat(document.getElementById('rating').value),
+      description: document.getElementById('description').value,
+      detailLink: document.getElementById('detailLink').value
+    };
+
       let res;
       if (editIndex !== null) {
         const product = allProducts[editIndex];
@@ -287,17 +315,29 @@
     }
 
     async function removeProduct(index) {
-      const product = allProducts[index];
-      const fileName = getFileFromCategory(product.category);
-      const res = await fetch(`${API_BASE}/${fileName}/${product.id}`, {
-        method: 'DELETE'
-      });
-      if (res.ok) {
-        fetchAllProducts();
-      } else {
-        alert('Failed to delete product.');
-      }
+    const product = allProducts[index];
+    const fileName = getFileFromCategory(product.category);
+    const categoryToStayOn = product.category;
+
+    const res = await fetch(`${API_BASE}/${fileName}/${product.id}`, {
+      method: 'DELETE'
+    });
+
+    if (res.ok) {
+      await fetchAllProducts();                 
+      filterByCategory(categoryToStayOn);      
+    } else {
+      alert('Failed to delete product.');
     }
+  }
+
+
+  function updateFilterUI() {
+  const buttons = document.querySelectorAll('#filterButtons button');
+  buttons.forEach(btn => btn.classList.remove('active-filter'));
+  const activeBtn = Array.from(buttons).find(btn => btn.textContent === filteredCategory);
+  if (activeBtn) activeBtn.classList.add('active-filter');
+}
 
     function openForm() {
       document.getElementById("productForm").style.display = "block";
@@ -307,6 +347,7 @@
       document.getElementById("productForm").style.display = "none";
       editIndex = null;
       document.getElementById('categorySelect').value = "";
+      document.getElementById('categorySelect').disabled = false;
       document.getElementById('productName').value = "";
       document.getElementById('productPrice').value = "";
       document.getElementById('brandSelect').value = "";
@@ -315,12 +356,23 @@
       document.getElementById('rating').value = "";
       document.getElementById('description').value = "";
       document.getElementById('detailLink').value = "";
+      document.getElementById('previewMain').src = "";
+      document.getElementById('previewHover').src = "";
     }
 
-    document.addEventListener("DOMContentLoaded", () => {
-      filterByCategory('All');
-      fetchAllProducts();
-    });
+    function previewImage(inputId, previewId) {
+      const url = document.getElementById(inputId).value;
+      document.getElementById(previewId).src = url;
+    }
+
+    document.addEventListener("DOMContentLoaded", async () => {
+  const saved = localStorage.getItem("adminFilter") || 'All';
+  filteredCategory = saved;
+
+  await fetchAllProducts();
+  filterByCategory(filteredCategory); 
+});
+
   </script>
 </body>
 </html>

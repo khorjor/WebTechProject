@@ -2,8 +2,8 @@
   {
     "id": 1,
     "image": "img/product-img/bed/bed1.jpg",
-    "name": " Modern Queen Bed ",
-    "price": 750,
+    "name": "The Komorebi Bed",
+    "price": 900,
     "hoverImage": "img/product-img/bed/hover-bed1.jpg",
     "rating": 5,
     "brand": "furniture",
@@ -13,30 +13,30 @@
   {
     "id": 2,
     "image": "img/product-img/bed/bed2.jpg",
-    "name": "Day Bed",
-    "price": 620,
+    "name": "The Hikari Lounger",
+    "price": 600,
     "hoverImage": "img/product-img/bed/hover-bed2.jpg",
     "rating": 4,
     "brand": "furniture",
-    "description": "The Day Bed combines functionality with a contemporary design, ideal for lounging during the day and providing comfortable sleep at night. Its space-saving build and refined silhouette make it perfect for small apartments or guest rooms.",
+    "description": "Designed for still afternoons and soft mornings, Hikari invites you to rest under the light. Its sturdy wooden base and plush cushions offer a timeless space for reflection, reading, or napping.",
     "detailLink": "product-details.html"
   },
   {
     "id": 3,
     "image": "img/product-img/bed/bed3.jpg",
-    "name": "Mid-Century Modern Bed",
-    "price": 450,
+    "name": "The Orlo Bed",
+    "price": 600,
     "hoverImage": "img/product-img/bed/hover-bed3.jpg",
     "rating": 4.5,
     "brand": "furniture",
-    "description": "Infuse your space with the charm of retro design through the Mid-Century Modern Bed. Featuring angled legs and a streamlined frame, this bed offers a perfect mix of vintage character and modern reliability.",
+    "description": "Crafted from richly grained walnut, the Orlo Bed balances timeless warmth with hidden functionality. Its tapered legs and built-in storage bring practical beauty to modern bedrooms.",
     "detailLink": "product-details.html"
   },
   {
     "id": 4,
     "image": "img/product-img/bed/bed4.jpg",
     "name": "Saba Wabi bed",
-    "price": 900,
+    "price": 1100,
     "hoverImage": "img/product-img/bed/hover-bed4.jpg",
     "rating": 5,
     "brand": "factory",
@@ -46,12 +46,34 @@
   {
     "id": 5,
     "image": "img/product-img/bed/bed5.jpg",
-    "name": "Vintage Iron Bed",
-    "price": 520,
+    "name": "The Liora Iron Bed",
+    "price": 600,
     "hoverImage": "img/product-img/bed/hover-bed5.jpg",
     "rating": 4,
     "brand": "artdeco",
-    "description": "Add a touch of nostalgia to your home with the Vintage Iron Bed. Featuring ornate ironwork and a classic silhouette, this bed combines antique elegance with robust construction for lasting appeal.",
+    "description": "The Liora Iron Bed blends the romance of vintage Europe with the strength of handcrafted iron.\nWith delicately curved scrollwork and a timeless matte black finish, it anchors your bedroom with quiet elegance. Designed to last for decades - and to be remembered.",
+    "detailLink": "product-details.html"
+  },
+  {
+    "id": 6,
+    "image": "https://i.pinimg.com/736x/95/17/2b/95172bde866be58246d07fe50f426e5d.jpg",
+    "name": "The Palma Bed",
+    "price": 1800,
+    "hoverImage": "https://i.pinimg.com/736x/12/94/60/129460d9dffee321a089fbc6eb5f215a.jpg",
+    "rating": 5,
+    "brand": "artdeco",
+    "description": "The Palma Bed invites rest with warmth and whimsy.\nIts bold spherical legs echo mid-century optimism, while the walnut wood frame grounds the design in earthy calm. Each piece is handcrafted with intention, turning simplicity into sculpture. Made to be both slept in and admired.",
+    "detailLink": "product-details.html"
+  },
+  {
+    "id": 7,
+    "image": "https://i.pinimg.com/736x/88/70/43/8870433f40ead93cc9721c6d36f13fa4.jpg",
+    "name": "The Sora Bed",
+    "price": 1000,
+    "hoverImage": "https://i.pinimg.com/736x/da/94/05/da94057b0516947781e60963a3487249.jpg",
+    "rating": 4,
+    "brand": "furniture",
+    "description": "The Sora Bed balances modern calm with vintage warmth.\nCrafted from solid oak and hand-woven cane, its rounded frame softens the space while offering tactile texture. Designed for restful interiors where simplicity and comfort coexist, it’s a quiet centerpiece for any serene bedroom.",
     "detailLink": "product-details.html"
   }
 ]

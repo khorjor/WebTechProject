@@ -2,8 +2,8 @@
   {
     "id": 1,
     "image": "img/product-img/table/table1.jpg",
-    "name": "Dining Table",
-    "price": 500,
+    "name": "The Moku Dining Table",
+    "price": 650,
     "hoverImage": "img/product-img/table/hover-table1.jpg",
     "rating": 5,
     "brand": "furniture",
@@ -13,7 +13,7 @@
   {
     "id": 2,
     "image": "img/product-img/table/table2.jpg",
-    "name": "Coffee Table",
+    "name": "The Nami Side Table",
     "price": 250,
     "hoverImage": "img/product-img/table/hover-table2.jpg",
     "rating": 4,
@@ -24,7 +24,7 @@
   {
     "id": 3,
     "image": "img/product-img/table/table3.jpg",
-    "name": "Study Desk",
+    "name": "The Still Desk",
     "price": 300,
     "hoverImage": "img/product-img/table/hover-table3.jpg",
     "rating": 4.5,
@@ -35,8 +35,8 @@
   {
     "id": 4,
     "image": "img/product-img/table/table4.jpg",
-    "name": "Console Table",
-    "price": 400,
+    "name": "The Vanta Console",
+    "price": 500,
     "hoverImage": "img/product-img/table/hover-table4.jpg",
     "rating": 5,
     "brand": "furniture",
@@ -46,12 +46,45 @@
   {
     "id": 5,
     "image": "img/product-img/table/table5.jpg",
-    "name": "Bedside Table",
-    "price": 150,
+    "name": "The Tsumiki Table",
+    "price": 480,
     "hoverImage": "img/product-img/table/hover-table5.jpg",
     "rating": 4.8,
     "brand": "furniture",
     "description": "Designed for convenience and style, this Bedside Table offers a compact yet functional storage solution for your bedroom. Crafted with a smooth finish and a modern silhouette, it features a spacious drawer and an open shelf to keep your nighttime essentials organized and within easy reach. Ideal for minimalist interiors or cozy spaces looking for a touch of elegance.",
+    "detailLink": "product-details.html"
+  },
+  {
+    "id": 6,
+    "image": "https://maidenhome.com/cdn/shop/files/master-ella-coffee-table-4_br.jpg?v=1748541366&width=1920",
+    "name": "The Ella Coffee Table",
+    "price": 990,
+    "hoverImage": "https://maidenhome.com/cdn/shop/files/master-ella-coffee-table-5_2.0.jpg?v=1721745325&width=1920",
+    "rating": 5,
+    "brand": "artdeco",
+    "description": "The Ella Coffee Table is a testament to the magic that transpires when exquisite materials come together. Its curvaceous glass tabletop rests upon cylindrical legs with a hand-applied bronze finish.",
+    "detailLink": "product-details.html"
+  },
+  {
+    "id": 7,
+    "image": "https://i.pinimg.com/736x/a5/91/c4/a591c447e9bb7110c1cc27bd35002554.jpg",
+    "name": "The Lune Table",
+    "price": 540,
+    "hoverImage": "https://i.pinimg.com/736x/7e/6c/ab/7e6cab8bc05efc2a070b6a0c7e94b36c.jpg",
+    "rating": 5,
+    "brand": "furniture",
+    "description": "The Lune Table pairs form and flow in quiet harmony.\nCrafted from solid wood with softened edges and sculptural supports, it offers a grounded presence while remaining airy and light. Ideal for Japandi and minimalist interiors, it’s a centerpiece made for calm living.",
+    "detailLink": "product-details.html"
+  },
+  {
+    "id": 8,
+    "image": "https://i.pinimg.com/736x/47/62/b1/4762b165d69dadc1a80f1181c7e81cdb.jpg",
+    "name": "The Forma Table",
+    "price": 2900,
+    "hoverImage": "https://i.pinimg.com/736x/bd/91/3b/bd913b561af0b99aace34f2e29bd3624.jpg",
+    "rating": 5,
+    "brand": "artdeco",
+    "description": "The Forma Table is a study in sculptural contrast.\nIts hand-finished hardwood top rests atop asymmetrical legs—one open and airy, the other grounded and solid. Designed to elevate dining or dialogue, it brings natural harmony and artistic presence to any interior.",
     "detailLink": "product-details.html"
   }
 ]

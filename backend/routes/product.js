@@ -24,7 +24,40 @@ router.get('/:category', (req, res) => {
   }
 });
 
-// POST: Add new product and sort key.
+// POST: Add new product to a category
+router.post('/:category', (req, res) => {
+  const { category } = req.params;
+  const filePath = path.join(DATA_DIR, `${category}.json`);
+
+  if (!fs.existsSync(filePath)) {
+    return res.status(404).json({ error: 'Category not found' });
+  }
+
+  try {
+    const data = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+    const newProduct = req.body;
+
+    const orderedProduct = {
+      id: data.length > 0 ? data[data.length - 1].id + 1 : 1,
+      image: newProduct.image,
+      name: newProduct.name,
+      price: newProduct.price,
+      hoverImage: newProduct.hoverImage,
+      rating: newProduct.rating,
+      brand: newProduct.brand,
+      description: newProduct.description,
+      detailLink: newProduct.detailLink
+    };
+
+    data.push(orderedProduct);
+    fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf-8');
+    res.json({ success: true, product: orderedProduct });
+  } catch (err) {
+    res.status(500).json({ error: 'Error writing data file' });
+  }
+});
+
+// PUT: Update product in category by ID
 router.put('/:category/:id', (req, res) => {
   const { category, id } = req.params;
   const filePath = path.join(DATA_DIR, `${category}.json`);
@@ -41,7 +74,7 @@ router.put('/:category/:id', (req, res) => {
     }
 
     const updatedProduct = Object.fromEntries([
-      ['id', data[index].id], // เก็บ ID เดิมไว้
+      ['id', data[index].id],
       ['image', req.body.image],
       ['name', req.body.name],
       ['price', req.body.price],
@@ -72,14 +105,19 @@ router.delete('/:category/:id', (req, res) => {
 
   try {
     let data = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
-    const originalLength = data.length;
-    data = data.filter(p => String(p.id) !== String(id));
 
-    if (data.length === originalLength) {
+    const filteredData = data.filter(p => String(p.id) !== String(id));
+
+    if (filteredData.length === data.length) {
       return res.status(404).json({ error: 'Product not found' });
     }
 
-    fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf-8');
+    const reassignedData = filteredData.map((product, index) => ({
+      ...product,
+      id: index + 1
+    }));
+
+    fs.writeFileSync(filePath, JSON.stringify(reassignedData, null, 2), 'utf-8');
     res.json({ success: true });
   } catch (err) {
     res.status(500).json({ error: 'Error deleting product' });

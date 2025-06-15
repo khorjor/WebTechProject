@@ -18,6 +18,14 @@
     <link rel="stylesheet" href="css/core-style.css">
     <link rel="stylesheet" href="style.css">
 
+    <style>
+  .product-image {
+    width: 450px;
+    height: 600px;
+    object-fit: cover;
+  }
+</style>
+
 </head>
 
 <body>
@@ -389,8 +397,9 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                                 <div class="product-img">
                                     
                                     <a href="product-details.html?id=${product.id}&category=${currentJsonFile.split('/').pop().replace('.json', '')}">
-                                        <img src="${product.image}" alt="${product.name}">
-                                        <img class="hover-img" src="${product.hoverImage}" alt="">
+                                        <img src="${product.image}" class="product-image" alt="${product.name}">
+                                        <img class="hover-img product-image" src="${product.hoverImage}" alt="">
+
                                     </a>
                                 </div>
 
