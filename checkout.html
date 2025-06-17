@@ -308,6 +308,32 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         });
     </script>
 
+    <div id="cart-items"></div>
+    
+    <script>
+    window.addEventListener("load", function() {
+    const user = sessionStorage.getItem("loggedInUser");
+    if (!user) {
+        alert("Please log in to view your cart.");
+        window.location.href = "login.html";
+        return;
+    }
+    const cart = JSON.parse(sessionStorage.getItem(`cart-${user}`)) || [];
+    if (cart.length === 0) {
+        document.getElementById("cart-items").innerHTML = "<p>Your cart is empty.</p>";
+        return;
+    }
+    let html = "<ul>";
+    let total = 0;
+    cart.forEach(item => {
+        html += `<li>${item.name} - ${item.quantity} x $${item.price}</li>`;
+        total += item.quantity * item.price;
+    });
+    html += `</ul><p><strong>Total: $${total.toFixed(2)}</strong></p>`;
+    document.getElementById("cart-items").innerHTML = html;
+    });
+    </script>
+
 </body>
 
 </html>

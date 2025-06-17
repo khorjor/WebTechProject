@@ -17,17 +17,8 @@
     <!-- Core Style CSS -->
     <link rel="stylesheet" href="css/core-style.css">
     <link rel="stylesheet" href="style.css">
-    
-    <style>
-        .product-image {
-            width: 450px;
-            height: 600px;
-            object-fit: cover;
-        }
-    </style>
 
 </head>
-
 
 <body>
     <!-- Search Wrapper Area Start -->
@@ -39,8 +30,8 @@
             <div class="row">
                 <div class="col-12">
                     <div class="search-content">
-                        <form action="#" method="get">
-                            <input type="search" name="search" id="search" placeholder="Type your keyword...">
+                        <form id="search-form">
+                            <input type="search" name="search" id="searchInput" placeholder="Type your keyword...">
                             <button type="submit"><img src="img/core-img/search.png" alt=""></button>
                         </form>
                     </div>
@@ -235,6 +226,7 @@
                 </div>
 
                 <div class="row" id="product-list">
+
                 </div>
 
                 <div class="row">
@@ -399,8 +391,8 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                                 <div class="product-img">
                                     
                                     <a href="product-details.html?id=${product.id}&category=${currentJsonFile.split('/').pop().replace('.json', '')}">
-                                        <img src="${product.image}" class="product-image" alt="${product.name}">
-                                        <img class="hover-img product-image" src="${product.hoverImage}" alt="">
+                                        <img src="${product.image}" alt="${product.name}">
+                                        <img class="hover-img" src="${product.hoverImage}" alt="">
                                     </a>
                                 </div>
 
@@ -510,8 +502,29 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
         document.addEventListener("DOMContentLoaded", function () {
             // Initial product load
-            loadProducts(currentJsonFile);
             updateCartCount();
+
+            const params = new URLSearchParams(window.location.search);
+            const category = params.get("category");
+
+            const categoryJsonMap = {
+            "chairs": "backend/data/product/chairs.json",
+            "tables": "backend/data/product/tables.json",
+            "beds": "backend/data/product/beds.json",
+            "home-deco": "backend/data/product/home-deco.json"
+            };
+
+            if (category && categoryJsonMap[category]) {
+            currentJsonFile = categoryJsonMap[category];
+            loadProducts(currentJsonFile);   
+            }
+            document.querySelectorAll("#category-list li").forEach(li => {
+            li.classList.remove("active");
+            const link = li.querySelector("a");
+            if (link && link.getAttribute("data-json")?.includes(category)) {
+            li.classList.add("active");
+            }
+        });
 
             // Category switch (left menu)
             document.querySelectorAll("#category-list a").forEach(link => {
@@ -535,7 +548,125 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
             });
         });
     </script>
-    
+
+    <div class="checkout-btn text-center mt-30">
+    <a href="#" id="checkoutBtn" class="btn amado-btn">Proceed to Checkout</a>
+    </div>
+    <script>
+    document.getElementById("checkoutBtn").addEventListener("click", function(e) {
+    e.preventDefault();
+    const user = sessionStorage.getItem("loggedInUser");
+    if (!user) {
+        alert("Please log in before proceeding to checkout.");
+        window.location.href = "login.html";
+        return;
+    }
+    const cart = JSON.parse(sessionStorage.getItem(`cart-${user}`)) || [];
+    if (cart.length === 0) {
+        alert("Your cart is empty.");
+        return;
+    }
+    window.location.href = "checkout.html";
+    });
+    </script>
+
+<script>
+document.getElementById("search-form").addEventListener("submit", function (e) {
+  e.preventDefault();
+  const query = document.getElementById("searchInput").value.trim().toLowerCase();
+  if (!query) return;
+
+  fetch(currentJsonFile)
+    .then(res => res.json())
+    .then(products => {
+      const matched = products.filter(p => p.name.toLowerCase().includes(query));
+      const container = document.getElementById("product-list");
+      container.innerHTML = ""; // เคลียร์สินค้าทั้งหมดก่อนแสดงใหม่
+
+      if (matched.length === 0) {
+        container.innerHTML = "<p>No products found.</p>";
+        return;
+      }
+
+      matched.forEach(product => {
+        const productHTML = `
+        <div class="col-12 col-sm-6 col-md-6 col-xl-6 mb-4">
+          <div class="single-product-wrapper">
+            <div class="product-img">
+              <a href="product-details.html?id=${product.id}">
+                <img src="${product.image}" alt="${product.name}">
+                <img class="hover-img" src="${product.hoverImage}" alt="">
+              </a>
+            </div>
+            <div class="product-description d-flex align-items-center justify-content-between">
+              <div class="product-meta-data">
+                <div class="line"></div>
+                <p class="product-price">$${product.price}</p>
+                <h6>${product.name}</h6>
+              </div>
+              <div class="ratings-cart text-right">
+                <div class="cart">
+                  <a href="#" class="add-to-cart-btn"
+                     data-id="${product.id}"
+                     data-name="${product.name}"
+                     data-price="${product.price}"
+                                        <img src="img/core-img/cart.png" alt="">
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>`;
+        container.insertAdjacentHTML("beforeend", productHTML);
+      });
+
+      setupAddToCartButtons(); // รีผูกปุ่ม add-to-cart
+    });
+});
+</script>
+
+<div id="autocomplete-list" class="autocomplete-items"></div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const searchInput = document.getElementById("searchInput");
+  const suggestionBox = document.getElementById("autocomplete-list");
+  let allProductNames = [];
+
+  // โหลดชื่อสินค้าจากไฟล์ JSON ปัจจุบัน
+  fetch(currentJsonFile)
+    .then(res => res.json())
+    .then(products => {
+      allProductNames = products.map(p => p.name);
+    });
+
+  searchInput.addEventListener("input", function () {
+    const query = this.value.toLowerCase();
+    suggestionBox.innerHTML = "";
+    if (!query) return;
+
+    const matches = allProductNames.filter(name => name.toLowerCase().includes(query));
+    matches.forEach(name => {
+      const item = document.createElement("div");
+      item.textContent = name;
+      item.classList.add("autocomplete-item");
+      item.addEventListener("click", function () {
+        searchInput.value = name;
+        suggestionBox.innerHTML = "";
+        document.getElementById("search-form").dispatchEvent(new Event("submit"));
+      });
+      suggestionBox.appendChild(item);
+    });
+  });
+
+  document.addEventListener("click", function (e) {
+    if (e.target !== searchInput) {
+      suggestionBox.innerHTML = "";
+    }
+  });
+});
+</script>
+
 
 </body>
 
