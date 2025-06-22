@@ -86,16 +86,5 @@
     "brand": "artdeco",
     "description": "The Cocoon Chair cradles you in quiet luxury.\nHand-carved from rich hardwood and paired with plush, cloud-like cushions, this sculptural seat merges comfort and form with poetic ease. Designed to ground a space, soften its edges, and invite rest — all at once.",
     "detailLink": "product-details.html"
-  },
-  {
-    "id": 9,
-    "image": "https://d.media.kavehome.com/image/upload/w_900,c_fill,ar_0.8,g_auto,f_auto/v1709222745/ambiences/A000002226_5.jpg",
-    "name": "Aleli",
-    "price": 245,
-    "hoverImage": "https://d.media.kavehome.com/image/upload/w_900,c_fill,ar_0.8,g_auto,f_auto/v1709562712/products/C0100008HI39_1V01.jpg",
-    "rating": 4,
-    "brand": "ikea",
-    "description": "Aleli chair in white bouclé with solid ash wood legs and natural finish",
-    "detailLink": ""
   }
 ]

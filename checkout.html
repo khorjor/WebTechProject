@@ -129,6 +129,7 @@
                                     </div>
                                     <div class="col-12 mb-3">
                                         <select class="w-100" id="country">
+                                        <option value="tha">Thailand</option>
                                         <option value="usa">United States</option>
                                         <option value="uk">United Kingdom</option>
                                         <option value="ger">Germany</option>
@@ -173,9 +174,9 @@
                         <div class="cart-summary">
                             <h5>Cart Total</h5>
                             <ul class="summary-table">
-                                <li><span>subtotal:</span> <span>$140.00</span></li>
+                                <li><span>subtotal:</span> <span id="checkout-subtotal">$0.00</span></li>
                                 <li><span>delivery:</span> <span>Free</span></li>
-                                <li><span>total:</span> <span>$140.00</span></li>
+                                <li><span>total:</span> <span id="checkout-total">$0.00</span></li>
                             </ul>
 
                             <div class="payment-method">
@@ -192,7 +193,7 @@
                             </div>
 
                             <div class="cart-btn mt-100">
-                                <a href="#" class="btn amado-btn w-100">Checkout</a>
+                                <a href="#" class="btn amado-btn w-100" id="checkout-button">Checkout</a>
                             </div>
                         </div>
                     </div>
@@ -216,8 +217,8 @@
                 <!-- Newsletter Form -->
                 <div class="col-12 col-lg-6 col-xl-5">
                     <div class="newsletter-form mb-100">
-                        <form action="#" method="post">
-                            <input type="email" name="email" class="nl-email" placeholder="Your E-mail">
+                         <form id="subscribe-form" method="post">
+                            <input id="subscribe-email" type="email" name="email" class="nl-email" placeholder="Your E-mail">
                             <input type="submit" value="Subscribe">
                         </form>
                     </div>
@@ -307,6 +308,144 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
             }
         });
     </script>
+
+    <div id="cart-items"></div>
+    
+    <script>
+        window.addEventListener("load", function () {
+            const user = sessionStorage.getItem("loggedInUser");
+            if (!user) {
+                alert("Please log in to view your cart.");
+                window.location.href = "login.html";
+                return;
+            }
+
+            const cart = JSON.parse(sessionStorage.getItem(`cart-${user}`)) || [];
+            if (cart.length === 0) {
+                alert("Your cart is empty.");
+                window.location.href = "cart.html";
+                return;
+            }
+
+            let total = 0;
+            cart.forEach(item => {
+                total += item.quantity * item.price;
+            });
+
+            document.getElementById("checkout-subtotal").textContent = `$${total.toFixed(2)}`;
+            document.getElementById("checkout-total").textContent = `$${total.toFixed(2)}`;
+        });
+
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const total = sessionStorage.getItem("checkout-total");
+            if (total) {
+                const formatted = `$${parseFloat(total).toFixed(2)}`;
+                const subtotalElem = document.getElementById("checkout-subtotal");
+                const totalElem = document.getElementById("checkout-total");
+
+                if (subtotalElem) subtotalElem.textContent = formatted;
+                if (totalElem) totalElem.textContent = formatted;
+            }
+        });
+    </script>
+
+    <script>
+    document.getElementById("checkout-button").addEventListener("click", function (e) {
+    e.preventDefault();
+
+    const user = sessionStorage.getItem("loggedInUser");
+    if (!user) {
+        alert("Please log in before checking out.");
+        window.location.href = "login.html";
+        return;
+    }
+
+    const cart = JSON.parse(sessionStorage.getItem(`cart-${user}`)) || [];
+
+    if (cart.length === 0) {
+        alert("Your cart is empty.");
+        window.location.href = "cart.html";
+        return;
+    }
+
+    const data = {
+        firstName: document.getElementById("first_name").value,
+        lastName: document.getElementById("last_name").value,
+        company: document.getElementById("company").value,
+        email: document.getElementById("email").value,
+        country: document.getElementById("country").value,
+        address: document.getElementById("street_address").value,
+        city: document.getElementById("city").value,
+        zipCode: document.getElementById("zipCode").value,
+        phone: document.getElementById("phone_number").value,
+        comment: document.getElementById("comment").value,
+        paymentMethod: document.getElementById("paypal").checked ? "Paypal" : "Cash on Delivery",
+        cartItems: cart 
+    };
+
+    sessionStorage.setItem("checkoutData", JSON.stringify(data));
+
+    fetch("http://localhost:5000/api/checkout", {
+        method: "POST",
+        headers: {
+        "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    })
+    .then(async response => {
+        if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(errorText);
+        }
+        return response.json();
+    })
+    .then(result => {
+        alert("Checkout completed!");
+        sessionStorage.removeItem(`cart-${user}`); 
+    })
+    .catch(error => {
+        console.error("Error:", error);
+        alert("Checkout failed: " + error.message);
+    });
+    });
+    </script>
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.getElementById('subscribe-form');
+            if (form) {
+                form.addEventListener('submit', subscribeSubmit);
+            }
+        });
+        async function subscribeSubmit(e) {
+            e.preventDefault();
+            console.log('Hi');
+            const email = { email: document.getElementById('subscribe-email').value };
+            console.log(email);
+            try {
+                const response = await fetch('http://localhost:5000/api/subscribe', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(email)
+                });
+
+                if (response.ok) {
+                    alert("Subscribed successfully!");
+                    document.getElementById('subscribe-email').value = ""; // reset
+                } else {
+                    alert("Something went wrong");
+                }
+            } catch (err) {
+                console.error(err);
+                alert("Failed to send request");
+            }
+        }
+    </script>
+
 
 </body>
 

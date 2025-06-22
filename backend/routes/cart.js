@@ -80,7 +80,13 @@ router.delete('/', (req, res) => {
         return res.status(404).json({ success: false, message: "User cart not found" });
     }
 
-    carts[username] = carts[username].filter(item => item.productId !== productId);
+    const originalLength = carts[username].length;
+
+    carts[username] = carts[username].filter(item => String(item.productId) !== String(productId));
+
+    if (carts[username].length === originalLength) {
+        return res.status(404).json({ success: false, message: "Item not found in cart" });
+    }
 
     try {
         fs.writeFileSync(cartFilePath, JSON.stringify(carts, null, 2));

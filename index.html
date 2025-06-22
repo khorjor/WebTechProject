@@ -29,9 +29,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <div class="search-content">
-                        <form action="#" method="get">
-                            <input type="search" name="search" id="search" placeholder="Type your keyword...">
+                    <div class="search-content"> 
+                        <form id="search-form">
+                            <input type="text" name="search" id="searchInput" placeholder="Type your keyword...(chair ,table ,bed ,home deco)">
                             <button type="submit"><img src="img/core-img/search.png" alt=""></button>
                         </form>
                     </div>
@@ -244,8 +244,8 @@
                 <!-- Newsletter Form -->
                 <div class="col-12 col-lg-6 col-xl-5">
                     <div class="newsletter-form mb-100">
-                        <form action="#" method="post">
-                            <input type="email" name="email" class="nl-email" placeholder="Your E-mail">
+                        <form id="subscribe-form" method="post">
+                            <input id="subscribe-email" type="email" name="email" class="nl-email" placeholder="Your E-mail">
                             <input type="submit" value="Subscribe">
                         </form>
                     </div>
@@ -334,6 +334,93 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
             </span>`;
             }
         });
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // แสดงช่องค้นหาเมื่อคลิกปุ่ม Search
+            const searchNav = document.querySelector(".search-nav");
+            const searchWrapper = document.querySelector(".search-wrapper");
+            const searchClose = document.querySelector(".search-close");
+
+            if (searchNav && searchWrapper && searchClose) {
+                searchNav.addEventListener("click", function (e) {
+                    e.preventDefault();
+                    searchWrapper.classList.add("active");
+                });
+
+                searchClose.addEventListener("click", function () {
+                    searchWrapper.classList.remove("active");
+                });
+            }
+
+            // เมื่อกด Enter ในช่องค้นหา → ไปหน้า shop.html
+            const form = document.getElementById("search-form");
+            if (form) {
+                form.addEventListener("submit", function (e) {
+                    e.preventDefault();
+                    const query = document.getElementById("searchInput").value.trim().toLowerCase();
+                    const categories = {
+                        "chairs": "chairs",
+                        "chair": "chairs",
+                        "tables": "tables",
+                        "table": "tables",
+                        "beds": "beds",
+                        "bed": "beds",
+                        "home deco": "home-deco",
+                        "home decoration": "home-deco",
+                        "deco": "home-deco"
+
+                    };
+                    const category = categories[query] || "chairs";
+                    window.location.href = `shop.html?category=${category}`;
+                });
+            }
+        });
+    </script>
+    <script>
+        function updateCartCount() {
+            const user = sessionStorage.getItem("loggedInUser");
+            if (!user) return;
+            const cart = JSON.parse(sessionStorage.getItem(`cart-${user}`)) || [];
+            const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const cartCountSpan = document.querySelector(".cart-nav span");
+            if (cartCountSpan) cartCountSpan.textContent = `(${count})`;
+        }
+        window.addEventListener("load", updateCartCount);
+    </script>
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.getElementById('subscribe-form');
+            if (form) {
+                form.addEventListener('submit', subscribeSubmit);
+            }
+        });
+        async function subscribeSubmit(e) {
+            e.preventDefault();
+            console.log('Hi');
+            const email = { email: document.getElementById('subscribe-email').value };
+            console.log(email);
+            try {
+                const response = await fetch('http://localhost:5000/api/subscribe', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(email)
+                });
+
+                if (response.ok) {
+                    alert("Subscribed successfully!");
+                    document.getElementById('subscribe-email').value = ""; // reset
+                } else {
+                    alert("Something went wrong");
+                }
+            } catch (err) {
+                console.error(err);
+                alert("Failed to send request");
+            }
+        }
     </script>
 
 </body>

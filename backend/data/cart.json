@@ -1,12 +1,12 @@
 {
-  "charlixcx": [
+  "test": [
     {
-      "productId": 1,
-      "productName": "Casa Chair",
-      "productPrice": 180,
+      "productId": "1",
+      "productName": "The Casa Chair",
+      "productPrice": 210,
       "productImage": "img/product-img/chair/chair1.jpg",
-      "quantity": 6,
-      "addedAt": "2025-06-13T09:50:45.519Z"
+      "quantity": 1,
+      "addedAt": "2025-06-22T10:06:04.136Z"
     }
   ]
 }

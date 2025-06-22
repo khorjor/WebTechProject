@@ -1,0 +1,26 @@
+{
+  "customer": {
+    "firstName": "Pornpawee",
+    "lastName": "Khummee",
+    "company": "PRC",
+    "email": "khaojaoshakeaw@gmail.com",
+    "country": "tha",
+    "address": "117 Kaew Nawarat Rd. Wat Ket",
+    "city": "Mueang",
+    "zipCode": "50000",
+    "phone": "0956869451",
+    "comment": "",
+    "paymentMethod": "Cash on Delivery"
+  },
+  "cartItems": [
+    {
+      "id": "1",
+      "name": "The Casa Chair",
+      "price": 210,
+      "img": "img/product-img/chair/chair1.jpg",
+      "quantity": 1
+    }
+  ],
+  "total": 210,
+  "timestamp": "2025-06-22T10:13:37.638Z"
+}

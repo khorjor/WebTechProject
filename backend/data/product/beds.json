@@ -75,5 +75,16 @@
     "brand": "furniture",
     "description": "The Sora Bed balances modern calm with vintage warmth.\nCrafted from solid oak and hand-woven cane, its rounded frame softens the space while offering tactile texture. Designed for restful interiors where simplicity and comfort coexist, it’s a quiet centerpiece for any serene bedroom.",
     "detailLink": "product-details.html"
+  },
+  {
+    "id": 8,
+    "image": "https://www.ikea.com/th/en/images/products/vatnestroem-pocket-sprung-mattress-firm-natural__0801446_pe768134_s5.jpg?f=s",
+    "name": "VATNESTRÖM",
+    "price": 2400,
+    "hoverImage": "https://www.ikea.com/th/en/images/products/vatnestroem-pocket-sprung-mattress-firm-natural__1044472_pe842183_s5.jpg?f=s",
+    "rating": 5,
+    "brand": "",
+    "description": "For a naturally good night´s sleep. With this firm mattress, you have designated natural materials closest to the skin. Supporting pocket springs and comfort zones make you ready for the new day!",
+    "detailLink": ""
   }
 ]
